@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Best of Bart{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="left-navbar">
+                <a href="{% url 'home' %}" class="home-btn">Best of Bart</a>
+            </div>
+            <div class="right-navbar">
+                <a href="{% url 'contact' %}" class="contact-btn">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 C.H.M van den Eijnden</p>
+        <a href="{% url 'contact' %}">Contact</a>
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+    <script src="{% static 'main/js/script.js' %}"></script>
+</body>
+</html>

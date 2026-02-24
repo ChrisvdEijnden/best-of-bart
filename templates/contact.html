@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+<div class="contact-container">
+    <h1 class="main-header">Contact</h1>
+    
+    <div class="contact-content">
+        <div class="contact-info">
+            <p class="contact-subheader">Vragen, opmerkingen of ideeën? Stuur me gerust een berichtje!</p>
+            
+            <div class="contact-item">
+                <p class="contact-label">Email</p>
+                <a href="mailto:info@bestofbart.nl" class="contact-link">info@bestofbart.nl</a>
+            </div>
+            
+            <div class="contact-item">
+                <p class="contact-label">Instagram</p>
+                <a href="https://www.instagram.com/bartrooz/" target="_blank" class="contact-link">www.instagram.com/bartrooz</a>
+            </div>
+
+            <div class="contact-item">
+                <p class="contact-label">TikTok</p>
+                <a href="https://www.tiktok.com/@bestofbart" target="_blank" class="contact-link">www.tiktok.com/@bestofbart</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

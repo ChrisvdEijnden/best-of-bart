@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content_class %}content-overlay{% endblock %}
+
+{% block content %}
+<div class="home-container">
+    <h1 class="main-header">Meester Bart</h1>
+    
+    <div class="gallery">
+        {% for item in gallery_items %}
+            <div class="gallery-item" data-item-id="{{ item.id }}" data-tiktok-url="{{ item.tiktok_url }}" data-description="{{ item.description }}" data-genre="{{ item.genre }}" data-files='{{ item.files|safe }}'>
+                <h2 class="item-title">{{ item.title }}</h2>
+                <img src="{% static item.image.url %}" alt="{{ item.title }}">
+                <span class="genre-tag genre-{{ item.genre }}">{{ item.genre }}</span>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="see-all-container">
+        <a href="{% url 'items' %}" class="see-all-btn">Bekijk alle {{ total_items }} lessen</a>
+    </div>
+
+    <div class="popup" id="popup">
+        <nav class="popup-nav">
+            <div class="popup-nav-tabs">
+                <button class="tab-btn active" data-tab="0" onclick="switchTab(0)">TikTok</button>
+                <button class="tab-btn" data-tab="1" onclick="switchTab(1)">Bestanden</button>
+                <button class="tab-btn" data-tab="2" onclick="switchTab(2)">Beschrijving</button>
+            </div>
+            <button class="close-popup-btn" onclick="closePopup()" title="Sluiten">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                    <path fill="currentColor" d="M10 8.586L2.929 1.515L1.515 2.929L8.586 10l-7.071 7.071l1.414 1.414L10 11.414l7.071 7.071l1.414-1.414L11.414 10l7.071-7.071l-1.414-1.414z" />
+                </svg>
+            </button>
+        </nav>
+
+        <!-- Tab 0: TikTok -->
+        <div class="popup-tab" data-tab="0" style="display: flex; flex-direction: column;">
+            <img id="popupImage">
+            <h2 class="item-title" id="popupTitle"></h2>
+        </div>
+
+        <!-- Tab 1: Bestanden -->
+        <div class="popup-tab" data-tab="1" style="display: flex; flex-direction: column;" id="popupFiles">
+        </div>
+
+        <!-- Tab 2: Uitleg -->
+        <div class="popup-tab" data-tab="2" style="display: flex; flex-direction: column;">
+            <p id="popupDescription"></p>
+        </div>
+    </div>
+
+    <div class="highlighted-item">
+        <div class="column">
+            <h1 class="highlighted-title"></h1>
+            <p class="highlighted-description"></p>
+        </div>
+        <div class="column">
+            <img class="highlighted-img">
+        </div>
+    </div>
+</div>
+
+{% endblock %}
