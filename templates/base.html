@@ -7,6 +7,8 @@
     <title>{% block title %}Best of Bart{% endblock %}</title>
 
     <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'main/images/favicon.ico' %}">
+
     {% block extra_css %}{% endblock %}
 </head>
 <body>
@@ -26,7 +28,7 @@
     </main>
 
     <footer class="footer">
-        <p>&copy; 2026 C.H.M van den Eijnden</p>
+        <p>&copy; 2026 C.H.M van den Eijnden. All Rights Reserved.</p>
         <a href="{% url 'contact' %}">Contact</a>
     </footer>
 

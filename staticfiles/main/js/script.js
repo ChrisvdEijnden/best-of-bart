@@ -29,9 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
             files: filesData
         };
     });
-    
-    // Show item with id 2
-    updateHighlighted(2);
 });
 
 document.addEventListener("click", function(event) {
