@@ -21,7 +21,7 @@ media/main/files/*/
 .venv
 venv/
 env/
-
+git push origin main --force
 # macOS
 .DS_Store
 

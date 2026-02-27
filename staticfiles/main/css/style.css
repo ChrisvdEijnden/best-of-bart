@@ -85,12 +85,13 @@ nav {
 }
 
 .tab-btn {
-    flex: 1;
+    flex: 0;
     padding: 7px 12px;
     border: 2px solid transparent;
     border-radius: 50px;
     position: relative;
     font-size: 0.7rem;
+    white-space: nowrap;
 }
 
 /* Button Hover States */
@@ -215,6 +216,7 @@ nav {
     display: flex;
     gap: 0;
     flex: 1;
+    margin-right: 10px;
 }
 
 .close-popup-btn {
@@ -228,7 +230,7 @@ nav {
     color: black;
     transition: background-color 0.2s;
     flex-shrink: 0;
-    padding: 5px;
+    margin-left: auto;
 }
 
 .close-popup-btn:hover,
