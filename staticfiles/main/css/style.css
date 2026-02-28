@@ -474,9 +474,7 @@ nav {
     .main-header        { font-size: 3rem; }
 
     .gallery            { padding: 10px; gap: 10px;}
-    .gallery-item       { width: calc(40% - 5px); height: calc((40vw - 5px) * 1.4); }
-    .genre-tag          {font-size: 0.7rem; padding: 5px 8px;}
-
+    .gallery-item       { width: calc(45% - 5px); height: calc((45vw - 5px) * 1.4); }
     .popup              { width: calc(100% - 40px); max-height: 80vh; top: 50%;}
 
     .filter-container   { gap: 6px; margin: 15px 0;}
@@ -487,7 +485,7 @@ nav {
 @media (min-width: 481px) and (max-width: 768px) {
     .main-header       { font-size: 4.5rem; }
     .tab-btn           { font-size: 0.8rem; padding: 6px 10px; }
-    .gallery-item      { width: calc(35% - 5px); height: calc((35vw - 5px) * 1.4); }
+    .gallery-item       { width: calc(45% - 5px); height: calc((45vw - 5px) * 1.4); }
     .popup             { width: 300px; }
     .popup-nav         { padding: 7px; }
     .close-popup-btn   { padding: 7px; }
