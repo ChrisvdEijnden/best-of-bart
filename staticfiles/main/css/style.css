@@ -474,7 +474,7 @@ nav {
     .main-header { font-size: 3rem; }
 
     .gallery { padding: 10px; gap: 10px;}
-    .gallery-item { width: calc(50% - 5px); height: auto; aspect-ratio: 5/7;}
+    .gallery-item { width: calc(45% - 5px); height: auto; aspect-ratio: 5/7;}
     .genre-tag {font-size: 0.7rem; padding: 5px 8px;}
 
     .popup { width: calc(100% - 40px); max-height: 80vh; top: 50%;}
