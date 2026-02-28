@@ -484,8 +484,7 @@ nav {
 /* Medium screens (481px–768px) */
 @media (min-width: 481px) and (max-width: 768px) {
     .main-header       { font-size: 4.5rem; }
-    .tab-btn           { font-size: 0.8rem; padding: 6px 10px; }
-    .gallery-item       { width: calc(45% - 5px); height: calc((45vw - 5px) * 1.4); }
+    .gallery-item      { width: calc(45% - 5px); height: calc((45vw - 5px) * 1.4); }
     .popup             { width: 300px; }
     .popup-nav         { padding: 7px; }
     .close-popup-btn   { padding: 7px; }
@@ -508,7 +507,6 @@ nav {
 @media (min-width: 769px) {
     .main-header       { font-size: 6rem; }
     .item-title        { font-size: 1.2rem; }
-    .tab-btn           { font-size: 0.9rem; padding: 7px 12px; }
     .gallery-item      { width: 200px; height: 280px; }
     .popup             { width: 350px; }
     .popup-nav         { padding: 10px; }
