@@ -128,8 +128,7 @@ GALLERY_ITEMS = [
         'genre': 'spelling',
         'files': [{'url': '/media/main/files/t-kofschip-x.zip'}],
     },
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
+]
 
 def home_view(request):
     items = [dict(item, files=json.dumps(item['files'])) for item in GALLERY_ITEMS]
