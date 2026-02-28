@@ -45,7 +45,7 @@ GALLERY_ITEMS = [
         'image': {'url': 'main/images/IMG_2781.JPG'},
         'tiktok_url': 'https://www.tiktok.com/@bestofbart/video/7501702548282150166',
         'genre': 'crea',
-        'files': [{'url': '/media/main/files/moederdag.zip'}],
+        'files': [{'url': '/media/main/files/moederdagcadeau.zip'}],
     },
     {
         'id': 6,
@@ -128,7 +128,7 @@ GALLERY_ITEMS = [
         'genre': 'spelling',
         'files': [{'url': '/media/main/files/t-kofschip-x.zip'}],
     },
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 def home_view(request):
