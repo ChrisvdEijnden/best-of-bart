@@ -1,5 +1,8 @@
 from django.shortcuts import render
 import json
+from django.http import HttpResponse
+import os
+
 
 GALLERY_ITEMS = [
     {
@@ -142,3 +145,10 @@ def items_view(request):
 
 def contact_view(request):
     return render(request, "contact.html")
+
+
+def ads_txt(request):
+    ads_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "ads.txt")
+    with open(ads_path, "r") as f:
+        content = f.read()
+    return HttpResponse(content, content_type="text/plain")
