@@ -9,7 +9,6 @@ urlpatterns = [
     path('items/', views.items_view, name='items'),
     path('', views.home_view, name='home'),
     path('contact/', views.contact_view, name='contact'),
-    path('ads.txt', views.ads_txt, name='ads_txt'),
 ]
 
 if settings.DEBUG:
