@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Mansalva&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ms+Madi&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&display=swap');
 
 /* Reset */
@@ -24,7 +24,7 @@ main {
 
 /* Typography */
 .main-header {
-    font-family: 'Mansalva', cursive;
+    font-family: 'Ms Madi', cursive;
     font-size: 2rem;
     text-align: center;
     color: black;
