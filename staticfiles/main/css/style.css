@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Ms+Madi&family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ms+Madi&family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 /* Reset */
 * {
@@ -47,7 +47,7 @@ nav {
     align-items: center;
     padding: 15px;
     color: black;
-    font-family: "Jost", sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 1rem;
     position: fixed;
     top: 0;
@@ -252,13 +252,13 @@ nav {
 }
 
 #popupDescription {
-    font-family: "Jost", sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 0.9rem;
     padding: 10px;
 }
 
 #popupFiles {
-    font-family: "Jost", sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 0.9rem;
     padding: 10px;
 }
@@ -291,7 +291,7 @@ nav {
 }
 
 .highlighted-description {
-    font-family: "Jost", sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 0.9rem;
     color: whitesmoke;
     line-height: 1.6;
@@ -310,7 +310,7 @@ nav {
     background-color: #333;
     color: white;
     padding: 10px;
-    font-family: "Jost", sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 0.8rem;
     display: flex;
     justify-content: center;
@@ -358,7 +358,7 @@ nav {
 .see-all-btn {
     color: #000;
     text-decoration: none;
-    font-family: "Jost", sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 1rem;
     padding: 7px 12px;
     border: 2px solid #333;
@@ -419,7 +419,7 @@ nav {
 }
 
 .contact-label {
-    font-family: "Jost", sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 0.9rem;
     color: #333;
     font-weight: 600;
@@ -427,7 +427,7 @@ nav {
 }
 
 .contact-link {
-    font-family: "Jost", sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 0.85rem;
     color: #0066cc;
     text-decoration: none;
@@ -448,7 +448,7 @@ nav {
     color: white;
     padding: 7px 12px;
     border-radius: 50px;
-    font-family: "Jost", sans-serif;
+    font-family: "Open Sans", sans-serif;
     text-transform: capitalize;
     z-index: 1;
 }
