@@ -454,15 +454,19 @@ nav {
 }
 
 .genre-crea {
-    background-color: #0d5c1f;
+    background-color: #7bb801;
 }
 
 .genre-spelling {
-    background-color: #4a148c;
+    background-color: #00b9e5;
 }
 
 .genre-rekenen {
-    background-color: #8e0000;
+    background-color: #fdb40f;
+}
+
+.genre-musical {
+    background-color: #7bb801;
 }
 
 /* ── Media Queries ─────────────────────────────────────────────── */
