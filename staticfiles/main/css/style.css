@@ -32,10 +32,10 @@ main {
 
 .item-title {
     font-family: "Fredoka", serif;
-    font-size: 1rem;
+    font-weight: 500;
+    font-size: 1.2rem;
     text-align: left;
     color: black;
-    font-weight: lighter;
     z-index: 900;
 }
 
@@ -283,9 +283,9 @@ nav {
 
 .highlighted-title {
     font-family: "Fredoka", serif;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     color: white;
-    font-weight: lighter;
+    font-weight: 500;
     margin: 0 0 20px;
     text-align: left;
 }
@@ -444,11 +444,11 @@ nav {
     position: absolute;
     top: 10px;
     right: 10px;
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: white;
     padding: 7px 12px;
     border-radius: 50px;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Fredoka", sans-serif;
     text-transform: capitalize;
     z-index: 1;
 }
@@ -466,7 +466,7 @@ nav {
 }
 
 .genre-musical {
-    background-color: #7bb801;
+    background-color: #7bb7bb801801;
 }
 
 /* ── Media Queries ─────────────────────────────────────────────── */
