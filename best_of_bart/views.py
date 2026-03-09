@@ -134,7 +134,7 @@ GALLERY_ITEMS = [
     {
         'id': 15,
         'title': "Krastekeningen maken",
-        'decription': "In deze les maken leerlingen een kleurrijke krastekening met het jaartal 2026. Eerst kleuren ze een vel stevig papier helemaal vol met blokjes wasco. Daarna verven ze het blad zwart. Door een beetje afwasmiddel door de zwarte verf te mengen hecht de verf beter aan de wasco en is het later ook makkelijker om in de verflaag te krassen. Als het werk goed is opgedroogd, krassen de leerlingen met een satéprikker vuurwerk en andere tekeningen in de verflaag, waardoor de kleuren er weer tevoorschijn komen. Met de bijbehorende presentatie kun je deze les eenvoudig stap voor stap uitvoeren.",
+        'description': "In deze les maken leerlingen een kleurrijke krastekening met het jaartal 2026. Eerst kleuren ze een vel stevig papier helemaal vol met blokjes wasco. Daarna verven ze het blad zwart. Door een beetje afwasmiddel door de zwarte verf te mengen hecht de verf beter aan de wasco en is het later ook makkelijker om in de verflaag te krassen. Als het werk goed is opgedroogd, krassen de leerlingen met een satéprikker vuurwerk en andere tekeningen in de verflaag, waardoor de kleuren er weer tevoorschijn komen. Met de bijbehorende presentatie kun je deze les eenvoudig stap voor stap uitvoeren.",
         'image': {'url': 'main/images/IMG_2791.JPG'},
         'tiktok_url': 'https://www.tiktok.com/@bestofbart/video/7593764950741486880',
         'genre': 'crea',
@@ -143,7 +143,7 @@ GALLERY_ITEMS = [
     {
         'id': 16,
         'title': "Musical uitkiezen",
-        'decription': "De leukste tijd van het groep 8-jaar is weer begonnen: de musical! In deze les laat ik de kinderen zelf hun musical kiezen. We bekijken samen trailers van verschillende nieuwe musicals en bespreken klassikaal wat ze aanspreekt in het verhaal, de rollen en de liedjes. Zo denken de leerlingen actief mee en kiezen we samen een musical waar de hele groep enthousiast van wordt. Met de bijbehorende presentatie kun je dit proces eenvoudig ook met jouw klas doorlopen.",
+        'description': "De leukste tijd van het groep 8-jaar is weer begonnen: de musical! In deze les laat ik de kinderen zelf hun musical kiezen. We bekijken samen trailers van verschillende nieuwe musicals en bespreken klassikaal wat ze aanspreekt in het verhaal, de rollen en de liedjes. Zo denken de leerlingen actief mee en kiezen we samen een musical waar de hele groep enthousiast van wordt. Met de bijbehorende presentatie kun je dit proces eenvoudig ook met jouw klas doorlopen.",
         'image': {'url': 'main/images/IMG_2792.JPG'},
         'tiktok_url': 'https://www.tiktok.com/@bestofbart/video/7611196918248656161',
         'genre': 'musical',
