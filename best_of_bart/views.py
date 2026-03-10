@@ -146,6 +146,15 @@ GALLERY_ITEMS = [
         'genre': 'musical',
         'files': [{'url': '/media/main/files/musical-uitkiezen.zip'}],
     },
+    {
+        'id': 17,
+        'title': "Kauwgom portretten maken",
+        'description': "In deze les laat ik je zien hoe we deze kauwgomportretten hebben gemaakt! In de les leren de kinderen stap voor stap een zelfportret te tekenen, die we vervolgens nóg leuker maken met een opgeblazen ballon, wat lijkt op een kauwgombel! ",
+        'image': {'url': 'main/images/IMG_2793.JPG'},
+        'tiktok_url': 'https://www.tiktok.com/@bestofbart/video/7615705145476713761?_r=1&_t=ZG-94a0hQhjKGe',
+        'genre': 'crea',
+        'files': [{'url': '/media/main/files/kauwgom-portretten.zip'}],
+    }
 ]
 
 
