@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+import json
 
 GALLERY_ITEMS = [
     {
@@ -151,16 +151,28 @@ GALLERY_ITEMS = [
 
 def home_view(request):
     """Display the home page with the first 4 gallery items."""
+    items_with_json = []
+    for item in GALLERY_ITEMS[:4]:
+        item_copy = item.copy()
+        item_copy['files_json'] = json.dumps(item['files'])
+        items_with_json.append(item_copy)
+
     return render(request, 'home.html', {
-        'gallery_items': GALLERY_ITEMS[:4],
+        'gallery_items': items_with_json,
         'total_items': len(GALLERY_ITEMS)
     })
 
 
 def items_view(request):
     """Display all gallery items."""
+    items_with_json = []
+    for item in GALLERY_ITEMS:
+        item_copy = item.copy()
+        item_copy['files_json'] = json.dumps(item['files'])
+        items_with_json.append(item_copy)
+
     return render(request, 'items.html', {
-        'gallery_items': GALLERY_ITEMS
+        'gallery_items': items_with_json
     })
 
 def contact_view(request):

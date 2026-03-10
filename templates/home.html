@@ -9,7 +9,7 @@
     
     <div class="gallery">
         {% for item in gallery_items %}
-            <div class="gallery-item" data-item-id="{{ item.id }}" data-tiktok-url="{{ item.tiktok_url }}" data-description="{{ item.description }}" data-genre="{{ item.genre }}" data-files='{{ item.files|safe }}'>
+            <div class="gallery-item" data-item-id="{{ item.id }}" data-tiktok-url="{{ item.tiktok_url }}" data-description="{{ item.description }}" data-genre="{{ item.genre }}" data-files='{{ item.files_json|safe }}'>
                 <h2 class="item-title">{{ item.title }}</h2>
                 <img src="{% static item.image.url %}" alt="{{ item.title }}">
                 <span class="genre-tag genre-{{ item.genre }}">{{ item.genre }}</span>
