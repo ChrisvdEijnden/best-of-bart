@@ -163,7 +163,6 @@ def items_view(request):
         'gallery_items': GALLERY_ITEMS
     })
 
-
 def contact_view(request):
     """Display the contact page."""
     return render(request, 'contact.html')
