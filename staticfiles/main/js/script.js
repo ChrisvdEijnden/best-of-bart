@@ -80,31 +80,27 @@ function openPopup(imageUrl, title, tiktokUrl, description, files) {
 }
 
 function populateFiles() {
-    const filesContainer = document.querySelector('.popup-tab[data-tab="1"]');
-    const filesList = filesContainer.querySelector('.files-list') || document.createElement('div');
-    filesList.className = 'files-list';
-    filesList.innerHTML = '';
-    
+    const filesContainer = document.querySelector('.popup-tab[data-tab="2"]');
+    filesContainer.innerHTML = "";
+
     if (currentFiles.length === 0) {
-        filesList.innerHTML = '<p>Geen bestanden beschikbaar</p>';
-    } else {
-        currentFiles.forEach(file => {
-            const fileLink = document.createElement('a');
-            fileLink.href = file.url;
-            fileLink.textContent = file.url.split('/').pop();
-            fileLink.target = '_blank';
-            fileLink.className = 'file-link';
-            
-            const fileItem = document.createElement('div');
-            fileItem.className = 'file-item';
-            fileItem.appendChild(fileLink);
-            
-            filesList.appendChild(fileItem);
-        });
+        filesContainer.innerHTML = "<p>Geen bestanden beschikbaar</p>";
+        return;
     }
-    
-    filesContainer.innerHTML = '';
-    filesContainer.appendChild(filesList);
+
+    currentFiles.forEach(file => {
+        const fileItem = document.createElement("div");
+        fileItem.className = "file-item";
+
+        const fileLink = document.createElement("a");
+        fileLink.href = file.url;
+        fileLink.textContent = file.url.split("/").pop();
+        fileLink.target = "_blank";
+        fileLink.className = "file-link";
+
+        fileItem.appendChild(fileLink);
+        filesContainer.appendChild(fileItem);
+    });
 }
 
 function closePopup() {
