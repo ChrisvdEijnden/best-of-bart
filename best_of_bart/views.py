@@ -40,7 +40,7 @@ GALLERY_ITEMS = [
     },
     {
         'id': 5,
-        'title': 'Moederdagcadeau',
+        'title': 'Moederdagcadeau maken',
         'description': "Leerlingen ontwerpen een persoonlijke wikkel voor een chocoladereep en maken een bijpassende 'golden ticket'. Het eindresultaat is een creatief en persoonlijk Moederdagcadeau.",
         'image': {'url': 'main/images/IMG_2781.JPG'},
         'tiktok_url': 'https://www.tiktok.com/@bestofbart/video/7501702548282150166',
@@ -58,7 +58,7 @@ GALLERY_ITEMS = [
     },
     {
         'id': 7,
-        'title': "Rocky Road",
+        'title': "Rocky Road maken",
         'description': 'De klas maakt samen een Sinterklaas-variant van Rocky Road. Leerlingen volgen een recept en verwerken verschillende ingrediënten tot een feestelijk eindproduct.',
         'image': {'url': 'main/images/IMG_2783.JPG'},
         'tiktok_url': 'https://www.tiktok.com/@bestofbart/video/7443536203560881430',
