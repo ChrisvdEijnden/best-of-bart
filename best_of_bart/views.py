@@ -9,7 +9,7 @@ GALLERY_ITEMS = [
         'image': {'url': 'main/images/IMG_2793.JPG'},
         'tiktok_url': 'https://www.tiktok.com/@bestofbart/video/7615705145476713761?_r=1&_t=ZG-94a0hQhjKGe',
         'genre': 'crea',
-        'files': [{'url': '/media/main/files/kauwgom-portretten.zip'}],
+        'files': [{'url': '/media/main/files/kauwgom-portretten.zip'}, {'url': 'https://www.youtube.com/watch?is=FRYN2hxFQmH40iwF&v=iMEBSQJYaAY&feature=youtu.be'}],
     },
     {
         'id': 2,
