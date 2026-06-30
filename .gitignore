@@ -27,4 +27,4 @@ git push origin main --force
 
 # IDE
 .vscode/
-.idea/
+.idea/.DS_Store
