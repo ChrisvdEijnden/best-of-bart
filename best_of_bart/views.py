@@ -4,7 +4,7 @@ import json
 GALLERY_ITEMS = [
 
     {
-        'id': 0,
+        'id': 1,
         'title': "Weerwolven Undercover op Ibiza",
         'description': 'Houdt jouw klas van het spelletje Weerwolven én speel je de musical Undercover op Ibiza, dan is deze versie van het spel iets voor jouw klas! De kaartjes en de uitlegpagina zijn hier te downloaden. Veel plezier met spelen!',
         'image': {'url': 'main/images/IMG_2794.JPG'},
@@ -13,7 +13,7 @@ GALLERY_ITEMS = [
         'files': [{'url': '/media/main/files/weerwolven-undercover-op-ibiza.zip'}],
     },
     {
-        'id': 1,
+        'id': 2,
         'title': "Kauwgom portretten maken",
         'description': "In deze les laat ik je zien hoe we deze kauwgomportretten hebben gemaakt! In de les leren de kinderen stap voor stap een zelfportret te tekenen, die we vervolgens nóg leuker maken met een opgeblazen ballon, wat lijkt op een kauwgombel! ",
         'image': {'url': 'main/images/IMG_2793.JPG'},
@@ -22,7 +22,7 @@ GALLERY_ITEMS = [
         'files': [{'url': '/media/main/files/kauwgom-portretten.zip'}, {'url': 'https://www.youtube.com/watch?is=FRYN2hxFQmH40iwF&v=iMEBSQJYaAY&feature=youtu.be'}],
     },
     {
-        'id': 2,
+        'id': 3,
         'title': "Musical uitkiezen",
         'description': "De leukste tijd van het groep 8-jaar is weer begonnen: de musical! In deze les laat ik de kinderen zelf hun musical kiezen. We bekijken samen trailers van verschillende nieuwe musicals en bespreken klassikaal wat ze aanspreekt in het verhaal, de rollen en de liedjes. Zo denken de leerlingen actief mee en kiezen we samen een musical waar de hele groep enthousiast van wordt. Met de bijbehorende presentatie kun je dit proces eenvoudig ook met jouw klas doorlopen.",
         'image': {'url': 'main/images/IMG_2792.JPG'},
@@ -31,7 +31,7 @@ GALLERY_ITEMS = [
         'files': [{'url': '/media/main/files/musical-uitkiezen.zip'}],
     },
     {
-        'id': 3,
+        'id': 4,
         'title': "Krastekeningen maken",
         'description': "In deze les maken leerlingen een kleurrijke krastekening met het jaartal 2026. Eerst kleuren ze een vel stevig papier helemaal vol met blokjes wasco. Daarna verven ze het blad zwart. Door een beetje afwasmiddel door de zwarte verf te mengen hecht de verf beter aan de wasco en is het later ook makkelijker om in de verflaag te krassen. Als het werk goed is opgedroogd, krassen de leerlingen met een satéprikker vuurwerk en andere tekeningen in de verflaag, waardoor de kleuren er weer tevoorschijn komen. Met de bijbehorende presentatie kun je deze les eenvoudig stap voor stap uitvoeren.",
         'image': {'url': 'main/images/IMG_2791.JPG'},
@@ -40,7 +40,7 @@ GALLERY_ITEMS = [
         'files': [{'url': '/media/main/files/krastekening.zip'}],
     },
     {
-        'id': 4,
+        'id': 5,
         'title': 'Pepernoten proeverij',
         'description': 'In deze les doen de leerlingen een proeverij met verschillende soorten pepernoten en kruidnoten. Ze onderzoeken de producten met hun zintuigen en verwerken hun bevindingen in eenvoudige observaties en vergelijkingen.',
         'image': {'url': 'main/images/IMG_2777.JPG'},
@@ -49,7 +49,7 @@ GALLERY_ITEMS = [
         'files': [{'url': '/media/main/files/pepernoten-proeverij.zip'}],
     },
     {
-        'id': 5,
+        'id': 6,
         'title': "'t Sexy fokschaap",
         'description': "Een creatieve spellingles waarin leerlingen een visuele en grappige uitwerking maken van de regel van 't fokschaap. Door tekenen en ontwerpen wordt de werkwoordspelling beter onthouden.",
         'image': {'url': 'main/images/IMG_2778.JPG'},
@@ -58,7 +58,7 @@ GALLERY_ITEMS = [
         'files': [{'url': '/media/main/files/t-sexy-fokschaap.zip'}],
     },
     {
-        'id': 6,
+        'id': 7,
         'title': "Maak je eigen prentenboek",
         'description': 'De leerlingen ontwerpen hun eigen prentenboek. Ze bedenken een verhaal, maken zelf de illustraties en zetten alles digitaal in een prentenboekvorm.',
         'image': {'url': 'main/images/IMG_2779.JPG'},
@@ -67,7 +67,7 @@ GALLERY_ITEMS = [
         'files': [{'url': '/media/main/files/prentenboek.zip'}],
     },
     {
-        'id': 7,
+        'id': 8,
         'title': 'Neon lights schilderen',
         'description': 'In deze crea-les maken leerlingen een schilderij met een neon-licht-effect. Met contrast en kleurgebruik ontstaat een opvallend, lichtgevend resultaat.',
         'image': {'url': 'main/images/IMG_2780.JPG'},
@@ -76,7 +76,7 @@ GALLERY_ITEMS = [
         'files': [{'url': '/media/main/files/neon-lights.zip'}],
     },
     {
-        'id': 8,
+        'id': 9,
         'title': 'Moederdagcadeau maken',
         'description': "Leerlingen ontwerpen een persoonlijke wikkel voor een chocoladereep en maken een bijpassende 'golden ticket'. Het eindresultaat is een creatief en persoonlijk Moederdagcadeau.",
         'image': {'url': 'main/images/IMG_2781.JPG'},
@@ -85,7 +85,7 @@ GALLERY_ITEMS = [
         'files': [{'url': '/media/main/files/moederdagcadeau.zip'}],
     },
     {
-        'id': 9,
+        'id': 10,
         'title': "Emoji's vouwen",
         'description': 'In deze les vouwen leerlingen papier tot herkenbare emoji-figuren. Er wordt gewerkt aan nauwkeurig vouwen, vorm en expressie.',
         'image': {'url': 'main/images/IMG_2782.JPG'},
@@ -94,7 +94,7 @@ GALLERY_ITEMS = [
         'files': [{'url': '/media/main/files/emojis-vouwen.zip'}],
     },
     {
-        'id': 10,
+        'id': 11,
         'title': "Rocky Road maken",
         'description': 'De klas maakt samen een Sinterklaas-variant van Rocky Road. Leerlingen volgen een recept en verwerken verschillende ingrediënten tot een feestelijk eindproduct.',
         'image': {'url': 'main/images/IMG_2783.JPG'},
@@ -103,7 +103,7 @@ GALLERY_ITEMS = [
         'files': [{'url': '/media/main/files/rocky-road.zip'}],
     },
     {
-        'id': 11,
+        'id': 12,
         'title': "Schuifpuzzel maken",
         'description': 'Leerlingen ontwerpen en maken hun eigen schuifpuzzel. Ze werken aan beeld, indeling en logisch nadenken om een speelbare puzzel te creëren.',
         'image': {'url': 'main/images/IMG_2784.JPG'},
@@ -112,7 +112,7 @@ GALLERY_ITEMS = [
         'files': [{'url': '/media/main/files/schuifpuzzel.zip'}],
     },
     {
-        'id': 12,
+        'id': 13,
         'title': "Mascotte maken",
         'description': 'In deze lessenserie ontwerpen leerlingen een eigen mascotte. Ze tekenen het ontwerp, kleien het figuur en schilderen het uiteindelijk af.',
         'image': {'url': 'main/images/IMG_2785.JPG'},
@@ -121,7 +121,7 @@ GALLERY_ITEMS = [
         'files': [{'url': '/media/main/files/mascotte.zip'}],
     },
     {
-        'id': 13,
+        'id': 14,
         'title': "Schatkaarten maken",
         'description': "Leerlingen maken een schatkaart op 'verouderd' papier. Ze geven hun kaart vorm met symbolen, routes en fantasierijke details.",
         'image': {'url': 'main/images/IMG_2786.JPG'},
@@ -130,7 +130,7 @@ GALLERY_ITEMS = [
         'files': [{'url': '/media/main/files/schatkaart.zip'}],
     },
     {
-        'id': 14,
+        'id': 15,
         'title': "Adventkalender maken",
         'description': "In deze les maken leerlingen een adventskalender in de vorm van een decemberdorpje. Elk huisje staat voor een dag en bevat een kleine verrassing of opdracht.",
         'image': {'url': 'main/images/IMG_2787.JPG'},
@@ -139,7 +139,7 @@ GALLERY_ITEMS = [
         'files': [{'url': '/media/main/files/adventkalender.zip'}],
     },
     {
-        'id': 15,
+        'id': 16,
         'title': "Expeditie eiland maken",
         'description': "Leerlingen ontwerpen en bouwen een eigen eiland geïnspireerd op Expeditie Robinson. Ze werken met reliëf, materialen en fantasie om hun eiland vorm te geven.",
         'image': {'url': 'main/images/IMG_2788.JPG'},
@@ -148,7 +148,7 @@ GALLERY_ITEMS = [
         'files': [{'url': '/media/main/files/expeditie-eiland.zip'}],
     },
     {
-        'id': 16,
+        'id': 17,
         'title': "Skyline schilderen",
         'description': "Leerlingen schilderen een skyline tegen een zonsondergang. De focus ligt op kleurverloop, silhouetten en dieptewerking.",
         'image': {'url': 'main/images/IMG_2789.JPG'},
@@ -157,7 +157,7 @@ GALLERY_ITEMS = [
         'files': [{'url': '/media/main/files/sunset-skyline.zip'}],
     },
     {
-        'id': 17,
+        'id': 18,
         'title': "'t Kofschip X",
         'description': "Een spellingles waarin leerlingen de regel van 't kofschip X visueel en praktisch verwerken. Door het maken van een concreet product wordt de regel beter onthouden.",
         'image': {'url': 'main/images/IMG_2790.JPG'},
