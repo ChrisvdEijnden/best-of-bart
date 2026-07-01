@@ -2,12 +2,11 @@ from django.shortcuts import render
 import json
 
 GALLERY_ITEMS = [
-
     {
         'id': 1,
         'title': "Weerwolven Undercover op Ibiza",
         'description': 'Houdt jouw klas van het spelletje Weerwolven én speel je de musical Undercover op Ibiza, dan is deze versie van het spel iets voor jouw klas! De kaartjes en de uitlegpagina zijn hier te downloaden. Veel plezier met spelen!',
-        'image': {'url': 'main/images/IMG_2794.JPG'},
+        'image': {'url': 'main/images/IMG_2794.png'},
         'tiktok-url': 'https://www.tiktok.com/@bestofbart/video/7657261083702365473',
         'genre': 'musical',
         'files': [{'url': '/media/main/files/weerwolven-undercover-op-ibiza.zip'}],
