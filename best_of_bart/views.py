@@ -7,7 +7,7 @@ GALLERY_ITEMS = [
         'title': "Classroom makeover",
         'description': "Het nieuwe schooljaar is begonnen en dus was het tijd om mijn lokaal weer helemaal om te toveren! Dit jaar bedacht ik het thema ‘Groep EIGHTIES!’ Een thema vol eighties-vibes, neon, muziek en natuurlijk discobollen! Eén ding is zeker: dit schooljaar wordt een FEESTJE! In dit bestand zijn de naamkaartjes, leskaarten, posters en het spotlight-template terug te vinden!",
         'image': {'url': 'main/images/IMG_2795.jpeg'},
-        'tiktok-url': 'https://vm.tiktok.com/ZGdxEVKME/',
+        'tiktok-url': 'https://www.tiktok.com/@bestofbart/video/7680246352898460961?_r=1&_t=ZG-99LwoDFaoJE',
         'genre': 'crea',
         'files': [{'url': '/media/main/files/groep-eighties.zip'}],
     },
