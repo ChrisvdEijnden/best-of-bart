@@ -1,3 +1,4 @@
 *.zip filter=lfs diff=lfs merge=lfs -text
 media/main/files/groep-eighties.zip filter=lfs diff=lfs merge=lfs -text
 staticfiles/main/images/IMG_2795.png filter=lfs diff=lfs merge=lfs -text
+media/main/files/spotlight.zip filter=lfs diff=lfs merge=lfs -text
