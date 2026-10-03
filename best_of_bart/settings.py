@@ -143,3 +143,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Uploaded images and zips are committed and pushed to GitHub automatically.
+# Set GIT_AUTO_PUSH=0 in the environment to turn this off (e.g. while testing).
+GIT_AUTO_PUSH = os.environ.get("GIT_AUTO_PUSH", "1") == "1"
+GIT_AUTO_PUSH_REMOTE = "origin"
+GIT_AUTO_PUSH_BRANCH = "main"
+GIT_AUTO_PUSH_AUTHOR = ("Best of Bart beheer", "info@bestofbart.nl")

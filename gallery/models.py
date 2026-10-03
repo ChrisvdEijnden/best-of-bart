@@ -1,7 +1,11 @@
 import json
+from pathlib import Path
 
 from django.core.exceptions import ValidationError
 from django.db import models
+
+from .git_sync import push_files
+from .images import crop_to_ratio
 
 
 class GalleryItem(models.Model):
@@ -29,6 +33,16 @@ class GalleryItem(models.Model):
     def __str__(self):
         return self.title
 
+    def save(self, *args, **kwargs):
+        new_upload = bool(self.image) and not self.image._committed
+        if new_upload:
+            cropped = crop_to_ratio(self.image)
+            if cropped:
+                self.image.save(Path(self.image.name).name, cropped, save=False)
+        super().save(*args, **kwargs)
+        if new_upload:
+            push_files([self.image.path], f"Afbeelding toegevoegd: {self.title}")
+
     @property
     def files_json(self):
         return json.dumps([{"url": f.url} for f in self.files.all()])
@@ -44,6 +58,12 @@ class GalleryFile(models.Model):
     def clean(self):
         if bool(self.file) == bool(self.external_url):
             raise ValidationError("Upload a file or enter a link (not both).")
+
+    def save(self, *args, **kwargs):
+        new_upload = bool(self.file) and not self.file._committed
+        super().save(*args, **kwargs)
+        if new_upload:
+            push_files([self.file.path], f"Bestand toegevoegd: {self.file.name} ({self.item.title})")
 
     @property
     def url(self):
