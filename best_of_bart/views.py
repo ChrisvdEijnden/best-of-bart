@@ -1,215 +1,27 @@
 from django.shortcuts import render
-import json
 
-GALLERY_ITEMS = [
-    {
-        'id': 1,
-        'title': "In de Spotlight",
-        'description': "IN THE SPOTLIGHT!\nSpot aan! In deze activiteit zetten we iedere week één leerling uit de klas letterlijk én figuurlijk in de spotlight!\nDe leerling vertelt iets over zichzelf, zijn/haar interesses, hobby’s en wat hem of haar bijzonder maakt. Zo leren de kinderen elkaar steeds beter kennen én oefenen ze op een leuke manier met presenteren voor de groep. Deze activiteit past perfect bij het thema GROEP EIGHTIES én bij het thema van de Kinderboekenweek ‘Spot aan!’",
-        'image': {'url': 'main/images/IMG_2796.JPG'},
-        'tiktok-url': 'https://www.tiktok.com/@bestofbart/video/7688394856669941014?_r=1&_t=ZN-99x6acLYVfi',
-        'genre': 'crea',
-        'files': [{'url': '/media/main/files/spotlight.zip'}],
-    },
-    {
-        'id': 2,
-        'title': "Classroom makeover",
-        'description': "Het nieuwe schooljaar is begonnen en dus was het tijd om mijn lokaal weer helemaal om te toveren! Dit jaar bedacht ik het thema ‘Groep EIGHTIES!’ Een thema vol eighties-vibes, neon, muziek en natuurlijk discobollen! Eén ding is zeker: dit schooljaar wordt een FEESTJE! In dit bestand zijn de naamkaartjes, leskaarten, posters en het spotlight-template terug te vinden!",
-        'image': {'url': 'main/images/IMG_2795.png'},
-        'tiktok-url': 'https://www.tiktok.com/@bestofbart/video/7680246352898460961?_r=1&_t=ZG-99LwoDFaoJE',
-        'genre': 'crea',
-        'files': [{'url': '/media/main/files/groep-eighties.zip'}],
-    },
-    {
-        'id': 3,
-        'title': "Weerwolven Undercover op Ibiza",
-        'description': 'Houdt jouw klas van het spelletje Weerwolven én speel je de musical Undercover op Ibiza, dan is deze versie van het spel iets voor jouw klas! De kaartjes en de uitlegpagina zijn hier te downloaden. Veel plezier met spelen!',
-        'image': {'url': 'main/images/IMG_2794.png'},
-        'tiktok-url': 'https://www.tiktok.com/@bestofbart/video/7657261083702365473',
-        'genre': 'musical',
-        'files': [{'url': '/media/main/files/weerwolven-undercover-op-ibiza.zip'}],
-    },
-    {
-        'id': 4,
-        'title': "Kauwgom portretten maken",
-        'description': "In deze les laat ik je zien hoe we deze kauwgomportretten hebben gemaakt! In de les leren de kinderen stap voor stap een zelfportret te tekenen, die we vervolgens nóg leuker maken met een opgeblazen ballon, wat lijkt op een kauwgombel! ",
-        'image': {'url': 'main/images/IMG_2793.JPG'},
-        'tiktok_url': 'https://www.tiktok.com/@bestofbart/video/7615705145476713761?_r=1&_t=ZG-94a0hQhjKGe',
-        'genre': 'crea',
-        'files': [{'url': '/media/main/files/kauwgom-portretten.zip'}, {'url': 'https://www.youtube.com/watch?is=FRYN2hxFQmH40iwF&v=iMEBSQJYaAY&feature=youtu.be'}],
-    },
-    {
-        'id': 5,
-        'title': "Musical uitkiezen",
-        'description': "De leukste tijd van het groep 8-jaar is weer begonnen: de musical! In deze les laat ik de kinderen zelf hun musical kiezen. We bekijken samen trailers van verschillende nieuwe musicals en bespreken klassikaal wat ze aanspreekt in het verhaal, de rollen en de liedjes. Zo denken de leerlingen actief mee en kiezen we samen een musical waar de hele groep enthousiast van wordt. Met de bijbehorende presentatie kun je dit proces eenvoudig ook met jouw klas doorlopen.",
-        'image': {'url': 'main/images/IMG_2792.JPG'},
-        'tiktok_url': 'https://www.tiktok.com/@bestofbart/video/7611196918248656161',
-        'genre': 'musical',
-        'files': [{'url': '/media/main/files/musical-uitkiezen.zip'}],
-    },
-    {
-        'id': 6,
-        'title': "Krastekeningen maken",
-        'description': "In deze les maken leerlingen een kleurrijke krastekening met het jaartal 2026. Eerst kleuren ze een vel stevig papier helemaal vol met blokjes wasco. Daarna verven ze het blad zwart. Door een beetje afwasmiddel door de zwarte verf te mengen hecht de verf beter aan de wasco en is het later ook makkelijker om in de verflaag te krassen. Als het werk goed is opgedroogd, krassen de leerlingen met een satéprikker vuurwerk en andere tekeningen in de verflaag, waardoor de kleuren er weer tevoorschijn komen. Met de bijbehorende presentatie kun je deze les eenvoudig stap voor stap uitvoeren.",
-        'image': {'url': 'main/images/IMG_2791.JPG'},
-        'tiktok_url': 'https://www.tiktok.com/@bestofbart/video/7593764950741486880',
-        'genre': 'crea',
-        'files': [{'url': '/media/main/files/krastekening.zip'}],
-    },
-    {
-        'id': 7,
-        'title': 'Pepernoten proeverij',
-        'description': 'In deze les doen de leerlingen een proeverij met verschillende soorten pepernoten en kruidnoten. Ze onderzoeken de producten met hun zintuigen en verwerken hun bevindingen in eenvoudige observaties en vergelijkingen.',
-        'image': {'url': 'main/images/IMG_2777.JPG'},
-        'tiktok_url': 'https://www.tiktok.com/@bestofbart/video/7578943053881298208',
-        'genre': 'rekenen',
-        'files': [{'url': '/media/main/files/pepernoten-proeverij.zip'}],
-    },
-    {
-        'id': 8,
-        'title': "'t Sexy fokschaap",
-        'description': "Een creatieve spellingles waarin leerlingen een visuele en grappige uitwerking maken van de regel van 't fokschaap. Door tekenen en ontwerpen wordt de werkwoordspelling beter onthouden.",
-        'image': {'url': 'main/images/IMG_2778.JPG'},
-        'tiktok_url': 'https://www.tiktok.com/@bestofbart/video/7574094689893223713',
-        'genre': 'spelling',
-        'files': [{'url': '/media/main/files/t-sexy-fokschaap.zip'}],
-    },
-    {
-        'id': 9,
-        'title': "Maak je eigen prentenboek",
-        'description': 'De leerlingen ontwerpen hun eigen prentenboek. Ze bedenken een verhaal, maken zelf de illustraties en zetten alles digitaal in een prentenboekvorm.',
-        'image': {'url': 'main/images/IMG_2779.JPG'},
-        'tiktok_url': 'https://www.tiktok.com/@bestofbart/video/7559623858534337824',
-        'genre': 'crea',
-        'files': [{'url': '/media/main/files/prentenboek.zip'}],
-    },
-    {
-        'id': 10,
-        'title': 'Neon lights schilderen',
-        'description': 'In deze crea-les maken leerlingen een schilderij met een neon-licht-effect. Met contrast en kleurgebruik ontstaat een opvallend, lichtgevend resultaat.',
-        'image': {'url': 'main/images/IMG_2780.JPG'},
-        'tiktok_url': 'https://www.tiktok.com/@bestofbart/video/7552943116949523744',
-        'genre': 'crea',
-        'files': [{'url': '/media/main/files/neon-lights.zip'}],
-    },
-    {
-        'id': 11,
-        'title': 'Moederdagcadeau maken',
-        'description': "Leerlingen ontwerpen een persoonlijke wikkel voor een chocoladereep en maken een bijpassende 'golden ticket'. Het eindresultaat is een creatief en persoonlijk Moederdagcadeau.",
-        'image': {'url': 'main/images/IMG_2781.JPG'},
-        'tiktok_url': 'https://www.tiktok.com/@bestofbart/video/7501702548282150166',
-        'genre': 'crea',
-        'files': [{'url': '/media/main/files/moederdagcadeau.zip'}],
-    },
-    {
-        'id': 12,
-        'title': "Emoji's vouwen",
-        'description': 'In deze les vouwen leerlingen papier tot herkenbare emoji-figuren. Er wordt gewerkt aan nauwkeurig vouwen, vorm en expressie.',
-        'image': {'url': 'main/images/IMG_2782.JPG'},
-        'tiktok_url': 'https://www.tiktok.com/@bestofbart/video/7466871827034508567',
-        'genre': 'crea',
-        'files': [{'url': '/media/main/files/emojis-vouwen.zip'}],
-    },
-    {
-        'id': 13,
-        'title': "Rocky Road maken",
-        'description': 'De klas maakt samen een Sinterklaas-variant van Rocky Road. Leerlingen volgen een recept en verwerken verschillende ingrediënten tot een feestelijk eindproduct.',
-        'image': {'url': 'main/images/IMG_2783.JPG'},
-        'tiktok_url': 'https://www.tiktok.com/@bestofbart/video/7443536203560881430',
-        'genre': 'crea',
-        'files': [{'url': '/media/main/files/rocky-road.zip'}],
-    },
-    {
-        'id': 14,
-        'title': "Schuifpuzzel maken",
-        'description': 'Leerlingen ontwerpen en maken hun eigen schuifpuzzel. Ze werken aan beeld, indeling en logisch nadenken om een speelbare puzzel te creëren.',
-        'image': {'url': 'main/images/IMG_2784.JPG'},
-        'tiktok_url': 'https://www.tiktok.com/@bestofbart/video/7464288494601440534',
-        'genre': 'crea',
-        'files': [{'url': '/media/main/files/schuifpuzzel.zip'}],
-    },
-    {
-        'id': 15,
-        'title': "Mascotte maken",
-        'description': 'In deze lessenserie ontwerpen leerlingen een eigen mascotte. Ze tekenen het ontwerp, kleien het figuur en schilderen het uiteindelijk af.',
-        'image': {'url': 'main/images/IMG_2785.JPG'},
-        'tiktok_url': 'https://www.tiktok.com/@bestofbart/video/7426633807169719585',
-        'genre': 'crea',
-        'files': [{'url': '/media/main/files/mascotte.zip'}],
-    },
-    {
-        'id': 16,
-        'title': "Schatkaarten maken",
-        'description': "Leerlingen maken een schatkaart op 'verouderd' papier. Ze geven hun kaart vorm met symbolen, routes en fantasierijke details.",
-        'image': {'url': 'main/images/IMG_2786.JPG'},
-        'tiktok_url': 'https://www.tiktok.com/@bestofbart/video/7277228115951209760',
-        'genre': 'crea',
-        'files': [{'url': '/media/main/files/schatkaart.zip'}],
-    },
-    {
-        'id': 17,
-        'title': "Adventkalender maken",
-        'description': "In deze les maken leerlingen een adventskalender in de vorm van een decemberdorpje. Elk huisje staat voor een dag en bevat een kleine verrassing of opdracht.",
-        'image': {'url': 'main/images/IMG_2787.JPG'},
-        'tiktok_url': 'https://www.tiktok.com/@bestofbart/video/7172094048319196421',
-        'genre': 'crea',
-        'files': [{'url': '/media/main/files/adventkalender.zip'}],
-    },
-    {
-        'id': 18,
-        'title': "Expeditie eiland maken",
-        'description': "Leerlingen ontwerpen en bouwen een eigen eiland geïnspireerd op Expeditie Robinson. Ze werken met reliëf, materialen en fantasie om hun eiland vorm te geven.",
-        'image': {'url': 'main/images/IMG_2788.JPG'},
-        'tiktok_url': 'https://www.tiktok.com/@bestofbart/video/7379850710663351585',
-        'genre': 'crea',
-        'files': [{'url': '/media/main/files/expeditie-eiland.zip'}],
-    },
-    {
-        'id': 19,
-        'title': "Skyline schilderen",
-        'description': "Leerlingen schilderen een skyline tegen een zonsondergang. De focus ligt op kleurverloop, silhouetten en dieptewerking.",
-        'image': {'url': 'main/images/IMG_2789.JPG'},
-        'tiktok_url': 'https://www.tiktok.com/@bestofbart/video/7418997114086231328',
-        'genre': 'crea',
-        'files': [{'url': '/media/main/files/sunset-skyline.zip'}],
-    },
-    {
-        'id': 20,
-        'title': "'t Kofschip X",
-        'description': "Een spellingles waarin leerlingen de regel van 't kofschip X visueel en praktisch verwerken. Door het maken van een concreet product wordt de regel beter onthouden.",
-        'image': {'url': 'main/images/IMG_2790.JPG'},
-        'tiktok_url': 'https://www.tiktok.com/@bestofbart/video/7296574980156820769',
-        'genre': 'spelling',
-        'files': [{'url': '/media/main/files/t-kofschip-x.zip'}],
-    },
-]
+from gallery.models import GalleryItem
+
+
+def visible_items():
+    return GalleryItem.objects.filter(is_visible=True).prefetch_related("files")
 
 
 def home_view(request):
     """Display the home page with the first 4 gallery items."""
-    items_with_json = []
-    for item in GALLERY_ITEMS[:4]:
-        item_copy = item.copy()
-        item_copy['files_json'] = json.dumps(item['files'])
-        items_with_json.append(item_copy)
-
+    items = visible_items()
     return render(request, 'home.html', {
-        'gallery_items': items_with_json,
-        'total_items': len(GALLERY_ITEMS)
+        'gallery_items': items[:4],
+        'total_items': items.count(),
     })
 
 
 def items_view(request):
     """Display all gallery items."""
-    items_with_json = []
-    for item in GALLERY_ITEMS:
-        item_copy = item.copy()
-        item_copy['files_json'] = json.dumps(item['files'])
-        items_with_json.append(item_copy)
-
     return render(request, 'items.html', {
-        'gallery_items': items_with_json
+        'gallery_items': visible_items(),
     })
+
 
 def contact_view(request):
     """Display the contact page."""

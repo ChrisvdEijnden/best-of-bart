@@ -24,9 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-0h$=a$n&9sdu1mxm23uql-*2ede--s9ma@9c(kf(mlcd006^dv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
     "bestofbart.nl",
     "www.bestofbart.nl",
     "185.181.8.201",
@@ -41,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'gallery',
 ]
 
 MIDDLEWARE = [
@@ -59,8 +62,8 @@ ROOT_URLCONF = 'best_of_bart.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'DIRS': [BASE_DIR / "templates"],
+        "DIRS": [BASE_DIR / "templates"],
+        "APP_DIRS": True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.request',
@@ -123,7 +126,10 @@ STATIC_URL = 'static/'
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STORAGES = {
+    "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
+    "staticfiles": {"BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"},
+}
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
