@@ -192,14 +192,17 @@ GALLERY_ITEMS = [
 
 
 class Command(BaseCommand):
-    help = "One-time import of the old hardcoded gallery list into the database."
+    help = "Import the old hardcoded gallery list into the database, adding any items that are missing."
 
     def handle(self, *args, **options):
-        if GalleryItem.objects.exists():
-            self.stdout.write("Gallery already has items; skipping import.")
-            return
-
         for position, data in enumerate(GALLERY_ITEMS, start=1):
+            item = GalleryItem.objects.filter(title=data["title"]).first()
+            if item:
+                self.restore_missing_image(item, data)
+                self.add_missing_files(item, data)
+                self.stdout.write(f"Already present: {item.title}")
+                continue
+
             item = GalleryItem(
                 title=data["title"],
                 description=data["description"],
@@ -207,20 +210,40 @@ class Command(BaseCommand):
                 tiktok_url=data.get("tiktok_url") or data.get("tiktok-url", ""),
                 order=position,
             )
-            image_path = self.find_static_image(data["image"]["url"])
-            with image_path.open("rb") as f:
-                item.image.save(image_path.name, File(f), save=False)
+            self.save_image(item, data)
             item.save()
-
-            for file_data in data["files"]:
-                url = file_data["url"]
-                if url.startswith(settings.MEDIA_URL):
-                    # The zip already lives in media/, so just point at it.
-                    GalleryFile.objects.create(item=item, file=url.removeprefix(settings.MEDIA_URL))
-                else:
-                    GalleryFile.objects.create(item=item, external_url=url)
+            self.add_missing_files(item, data)
 
             self.stdout.write(self.style.SUCCESS(f"Imported: {item.title}"))
+
+    def save_image(self, item, data):
+        image_path = self.find_static_image(data["image"]["url"])
+        with image_path.open("rb") as f:
+            item.image.save(image_path.name, File(f), save=False)
+
+    def restore_missing_image(self, item, data):
+        """Copy the static image into media/ when the item's image file is gone."""
+        if item.image and item.image.storage.exists(item.image.name):
+            return
+        image_path = self.find_static_image(data["image"]["url"])
+        with image_path.open("rb") as f:
+            # Keep the stored name when possible so existing references stay valid.
+            name = item.image.name or f"main/images/{image_path.name}"
+            item.image.name = item.image.storage.save(name, File(f))
+        item.save(update_fields=["image"])
+        self.stdout.write(self.style.SUCCESS(f"Restored image: {item.title}"))
+
+    def add_missing_files(self, item, data):
+        existing = {f.url for f in item.files.all()}
+        for file_data in data["files"]:
+            url = file_data["url"]
+            if url in existing:
+                continue
+            if url.startswith(settings.MEDIA_URL):
+                # The zip already lives in media/, so just point at it.
+                GalleryFile.objects.create(item=item, file=url.removeprefix(settings.MEDIA_URL))
+            else:
+                GalleryFile.objects.create(item=item, external_url=url)
 
     def find_static_image(self, relative_path):
         from django.contrib.staticfiles import finders
