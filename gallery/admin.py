@@ -23,3 +23,7 @@ class GalleryItemAdmin(admin.ModelAdmin):
         if obj.image:
             return format_html('<img src="{}" style="height:60px;border-radius:4px">', obj.image.url)
         return "—"
+
+admin.site.site_header = "Best of Bart beheer"
+admin.site.site_title = "Best of Bart"
+admin.site.index_title = "Lessen beheren"
