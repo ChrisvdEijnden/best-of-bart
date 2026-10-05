@@ -230,7 +230,7 @@ nav {
 }
 
 .close-popup-btn:hover,
-.filter-btn:hover {
+.filter-btn:hover, .login-btn:hover {
     background-color: #f0f0f0;
 }
 
@@ -355,7 +355,8 @@ nav {
 }
 
 .filter-btn,
-.see-all-btn {
+.see-all-btn,
+.login-btn {
     color: #000;
     text-decoration: none;
     font-family: "Open Sans", sans-serif;
@@ -369,26 +370,28 @@ nav {
 }
 
 .filter-btn:hover,
-.see-all-btn:hover {
+.see-all-btn:hover,
+.login-btn:hover {
     border-color: #333;
     color: #333;
 }
 
 .filter-btn.active,
-.see-all-btn.active {
+.see-all-btn.active,
+.login-btn.active {
     background-color: #333;
     color: white;
     border-color: #333;
 }
 
-.contact-content {
+.contact-content, .admin-content {
     width: 100%;
     display: flex;
     justify-content: center;
     padding: 20px;
 }
 
-.contact-info {
+.contact-info, .admin-login {
     display: flex;
     flex-direction: column;
     gap: 25px;
@@ -412,13 +415,14 @@ nav {
     border-bottom: 1px solid #ddd;
 }
 
-.contact-item {
+.contact-item, .form-group {
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-.contact-label {
+.contact-label, .admin-label {
     font-family: "Open Sans", sans-serif;
     font-size: 0.9rem;
     color: #333;
@@ -480,7 +484,7 @@ nav {
     .popup              { width: calc(100% - 40px); max-height: 80vh; top: 50%;}
 
     .filter-container   { gap: 6px; margin: 15px 0;}
-    .filter-btn, .see-all-btn { font-size: 0.85rem; padding: 5px 10px;}
+    .filter-btn, .see-all-btn, .login-btn { font-size: 0.85rem; padding: 5px 10px;}
 }
 
 /* Medium screens (481px–768px) */
@@ -493,7 +497,7 @@ nav {
     .close-popup-btn svg { width: 18px; height: 18px; }
     .highlighted-title { font-size: 2rem; }
     .contact-subheader { font-size: 1.2rem; }
-    .contact-label     { font-size: 0.95rem; }
+    .contact-label, .admin-label { font-size: 0.95rem; }
     .contact-link      { font-size: 0.9rem; }
 }
 
@@ -502,7 +506,7 @@ nav {
     .highlighted-item { flex-direction: column; }
     .highlighted-item .column:last-child { margin-top: 20px; width: 100%; }
     .highlighted-img  { max-width: 100%; }
-    .contact-info     { padding: 30px 20px; gap: 20px; }
+    .contact-info, .admin-login { padding: 30px 20px; gap: 20px; }
 }
 
 /* Desktop (≥ 769px) */
@@ -542,6 +546,13 @@ nav {
     .highlighted-description { font-size: 1rem; }
 
     .contact-subheader { font-size: 1.3rem; }
-    .contact-label     { font-size: 1rem; }
+    .contact-label, .admin-label { font-size: 1rem; }
     .contact-link      { font-size: 0.95rem; }
+}
+
+/* Admin login */
+.admin-error {
+    color: #b00020;
+    font-family: "Open Sans", sans-serif;
+    margin: 0;
 }

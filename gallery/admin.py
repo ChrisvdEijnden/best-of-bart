@@ -10,6 +10,8 @@ from .models import GalleryFile, GalleryItem
 admin.site.site_header = "Best of Bart beheer"
 admin.site.site_title = "Best of Bart"
 admin.site.index_title = "Lessen beheren"
+# /beheer/login/ uses the site's own styled login page.
+admin.site.login_template = "admin.html"
 
 
 class GalleryFileInline(admin.TabularInline):

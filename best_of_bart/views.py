@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
 from gallery.models import GalleryItem
 
 
@@ -23,7 +22,3 @@ def items_view(request):
 
 def contact_view(request):
     return render(request, 'contact.html')
-
-
-class AdminView(TemplateView):
-    template_name = "admin.html"

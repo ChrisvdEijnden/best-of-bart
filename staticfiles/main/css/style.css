@@ -549,3 +549,10 @@ nav {
     .contact-label, .admin-label { font-size: 1rem; }
     .contact-link      { font-size: 0.95rem; }
 }
+
+/* Admin login */
+.admin-error {
+    color: #b00020;
+    font-family: "Open Sans", sans-serif;
+    margin: 0;
+}
