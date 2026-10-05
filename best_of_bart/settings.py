@@ -128,8 +128,14 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STORAGES = {
     "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
-    "staticfiles": {"BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"},
+    # No manifest: the manifest version crashes every page with DEBUG = False
+    # unless collectstatic has been run after each change.
+    "staticfiles": {"BACKEND": "whitenoise.storage.CompressedStaticFilesStorage"},
 }
+
+# Serve files straight from static/ and the apps, so a stale or missing
+# collectstatic copy in staticfiles/ can't break the site.
+WHITENOISE_USE_FINDERS = True
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
