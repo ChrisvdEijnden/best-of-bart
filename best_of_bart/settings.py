@@ -21,7 +21,32 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-0h$=a$n&9sdu1mxm23uql-*2ede--s9ma@9c(kf(mlcd006^dv'
+# Never put the key in this file: the repository is public. It comes from the
+# DJANGO_SECRET_KEY environment variable, or else from secret_key.txt next to
+# manage.py, which is created on first start and is not committed (.gitignore).
+def load_secret_key():
+    if os.environ.get("DJANGO_SECRET_KEY"):
+        return os.environ["DJANGO_SECRET_KEY"]
+
+    key_file = BASE_DIR / "secret_key.txt"
+    if not key_file.exists():
+        from django.core.management.utils import get_random_secret_key
+
+        # Write to a temp file and link it into place, so that several server
+        # processes starting at once all end up using the same key.
+        tmp = key_file.with_name(f".secret_key.{os.getpid()}.tmp")
+        tmp.write_text(get_random_secret_key())
+        tmp.chmod(0o600)
+        try:
+            os.link(tmp, key_file)
+        except FileExistsError:
+            pass
+        finally:
+            tmp.unlink()
+    return key_file.read_text().strip()
+
+
+SECRET_KEY = load_secret_key()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False

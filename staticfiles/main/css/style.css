@@ -422,6 +422,16 @@ nav {
     gap: 8px;
 }
 
+.form-control {
+    padding: 2px 3px;
+    border-radius: 2px;
+    border: 2px #000 solid;
+    background-color: #b3d4fc;
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.9rem;
+    color: #333;
+}
+
 .contact-label, .admin-label {
     font-family: "Open Sans", sans-serif;
     font-size: 0.9rem;
@@ -497,7 +507,7 @@ nav {
     .close-popup-btn svg { width: 18px; height: 18px; }
     .highlighted-title { font-size: 2rem; }
     .contact-subheader { font-size: 1.2rem; }
-    .contact-label, .admin-label { font-size: 0.95rem; }
+    .contact-label, .admin-label, .form-control { font-size: 0.95rem; }
     .contact-link      { font-size: 0.9rem; }
 }
 
@@ -546,13 +556,13 @@ nav {
     .highlighted-description { font-size: 1rem; }
 
     .contact-subheader { font-size: 1.3rem; }
-    .contact-label, .admin-label { font-size: 1rem; }
+    .contact-label, .admin-label, .form-control { font-size: 1rem; }
     .contact-link      { font-size: 0.95rem; }
 }
 
-/* Admin login */
+/* Admin login error message */
 .admin-error {
-    color: #b00020;
+    color: #e20e49;
     font-family: "Open Sans", sans-serif;
     margin: 0;
 }

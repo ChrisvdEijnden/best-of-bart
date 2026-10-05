@@ -29,3 +29,7 @@ git push origin main --force
 .vscode/
 .idea/.DS_Store
 .DS_Store
+
+# Django secret key (generated on the server, never commit it)
+secret_key.txt
+.secret_key.*.tmp
