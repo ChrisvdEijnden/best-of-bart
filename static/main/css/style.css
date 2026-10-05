@@ -459,6 +459,7 @@ nav {
 .form-control:focus,
 .form-control.active {
     border-color: #000;
+    outline: none;
 }
 
 .contact-link {

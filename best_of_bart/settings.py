@@ -22,20 +22,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # Never put the key in this file: the repository is public. It comes from the
-# DJANGO_SECRET_KEY environment variable, or else from secret_key.txt next to
-# manage.py, which is created on first start and is not committed (.gitignore).
+# DJANGO_SECRET_KEY environment variable, or else from django_secret_key.txt
+# next to manage.py, which is created on first start (86 random characters,
+# readable only by the server's user) and is not committed (.gitignore).
 def load_secret_key():
     if os.environ.get("DJANGO_SECRET_KEY"):
         return os.environ["DJANGO_SECRET_KEY"]
 
-    key_file = BASE_DIR / "secret_key.txt"
+    key_file = BASE_DIR / "django_secret_key.txt"
     if not key_file.exists():
-        from django.core.management.utils import get_random_secret_key
+        import secrets
 
         # Write to a temp file and link it into place, so that several server
         # processes starting at once all end up using the same key.
         tmp = key_file.with_name(f".secret_key.{os.getpid()}.tmp")
-        tmp.write_text(get_random_secret_key())
+        tmp.write_text(secrets.token_urlsafe(64))
         tmp.chmod(0o600)
         try:
             os.link(tmp, key_file)
@@ -57,6 +58,14 @@ ALLOWED_HOSTS = [
     "bestofbart.nl",
     "www.bestofbart.nl",
     "185.181.8.201",
+]
+
+# The site runs on HTTPS behind a web server that talks plain HTTP to Django.
+# Without this, Django sees a mismatch and rejects every form post (login,
+# saving in the admin) with "403 Forbidden: CSRF verification failed".
+CSRF_TRUSTED_ORIGINS = [
+    "https://bestofbart.nl",
+    "https://www.bestofbart.nl",
 ]
 
 # Application definition
