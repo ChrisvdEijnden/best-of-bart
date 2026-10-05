@@ -230,7 +230,7 @@ nav {
 }
 
 .close-popup-btn:hover,
-.filter-btn:hover, .login-btn:hover {
+.filter-btn:hover {
     background-color: #f0f0f0;
 }
 
@@ -355,8 +355,7 @@ nav {
 }
 
 .filter-btn,
-.see-all-btn,
-.login-btn {
+.see-all-btn {
     color: #000;
     text-decoration: none;
     font-family: "Open Sans", sans-serif;
@@ -369,16 +368,32 @@ nav {
     transition: all 0.3s ease;
 }
 
-.filter-btn:hover,
-.see-all-btn:hover,
+.login-btn {
+    color: #fff;
+    text-decoration: none;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1rem;
+    padding: 7px 12px;
+    border: 2px solid #000;
+    background-color: #000;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
 .login-btn:hover {
+    border-color: #051574;
+    background-color: #051574;
+}
+
+.filter-btn:hover,
+.see-all-btn:hover {
     border-color: #333;
     color: #333;
 }
 
 .filter-btn.active,
-.see-all-btn.active,
-.login-btn.active {
+.see-all-btn.active {
     background-color: #333;
     color: white;
     border-color: #333;
@@ -422,22 +437,28 @@ nav {
     gap: 8px;
 }
 
-.form-control {
-    padding: 2px 3px;
-    border-radius: 2px;
-    border: 2px #000 solid;
-    background-color: #b3d4fc;
-    font-family: "Open Sans", sans-serif;
-    font-size: 0.9rem;
-    color: #333;
-}
-
 .contact-label, .admin-label {
     font-family: "Open Sans", sans-serif;
     font-size: 0.9rem;
     color: #333;
     font-weight: 600;
     margin: 0;
+}
+
+.form-control {
+    padding: 7px 12px;
+    background-color: #f7f7f7;
+    border-radius: 2px;
+    border: 2px #f7f7f7 solid;
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.9rem;
+    color: #333;
+    margin: 0;
+}
+
+.form-control:focus,
+.form-control.active {
+    border-color: #000;
 }
 
 .contact-link {
