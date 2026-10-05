@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from django.views.generic import TemplateView
 from gallery.models import GalleryItem
 
 
@@ -8,7 +8,6 @@ def visible_items():
 
 
 def home_view(request):
-    """Display the home page with the first 4 gallery items."""
     items = visible_items()
     return render(request, 'home.html', {
         'gallery_items': items[:4],
@@ -17,12 +16,14 @@ def home_view(request):
 
 
 def items_view(request):
-    """Display all gallery items."""
     return render(request, 'items.html', {
         'gallery_items': visible_items(),
     })
 
 
 def contact_view(request):
-    """Display the contact page."""
     return render(request, 'contact.html')
+
+
+class AdminView(TemplateView):
+    template_name = "admin.html"

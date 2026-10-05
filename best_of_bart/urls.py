@@ -6,6 +6,7 @@ from . import views
 
 urlpatterns = [
     path('beheer/', admin.site.urls),
+    path('beheer/login/', views.AdminView.as_view(), name='login'),
     path('lessen/', views.items_view, name='lessen'),
     path('', views.home_view, name='home'),
     path('contact/', views.contact_view, name='contact'),

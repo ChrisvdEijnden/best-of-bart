@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Beheer{% endblock %}
+{% block content %}
+<div class="admin-container">
+    <h1 class="main-header">Beheer</h1>
+    <div class="admin-content">
+        {% if form.non_field_errors %}
+        <div class="errorlist non-field-error">
+            {{ form.non_field_errors|striptags }}
+        </div>
+        {% endif %}
+        <form method="post" class="admin-login">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username" class="admin-label">Gebruikersnaam</label>
+                <input type="text" id="username" name="username" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password" class="admin-label">Wachtwoord</label>
+                <input type="password" id="password" name="password" class="form-control">
+            </div>
+            <button type="submit" class="login-btn">Inloggen</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
