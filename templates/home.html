@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block content_class %}content-overlay{% endblock %}
-
 {% block content %}
 <div class="home-container">
     <h1 class="main-header">Meester Bart</h1>
@@ -21,8 +19,13 @@
 
     <div class="highlighted-item">
         <div class="column">
-            <h1 class="highlighted-title">Welkom op mijn website!</h1>
-            <p class="highlighted-description">Ik ben Meester Bart: een enthousiaste en creatieve leerkracht van groep 8 met een grote passie voor het onderwijs. Ik tover graag 'saaie' lessen om tot betekenisvolle en leuke lessen. Dat doe ik door lesideeën en werkvormen te bedenken waardoor kinderen spelenderwijs, creatief en met plezier hun lesdoelen behalen.<br><br>Op deze website kun je mijn TikTok-video's bekijken én de bijbehorende bestanden downloaden, zodat je de ideeën direct kunt inzetten in jouw eigen klas.<br><br>Heb je vragen, opmerkingen of ideeën? Stuur me dan vooral een berichtje via één van mijn socials.<br><br>Groetjes,<br>Bart Roozen</p>
+            <h2 class="highlighted-title">Welkom op mijn website!</h2>
+            <div class="highlighted-description">
+                <p>Ik ben Meester Bart: een enthousiaste en creatieve leerkracht van groep 8 met een grote passie voor het onderwijs. Ik tover graag 'saaie' lessen om tot betekenisvolle en leuke lessen. Dat doe ik door lesideeën en werkvormen te bedenken waardoor kinderen spelenderwijs, creatief en met plezier hun lesdoelen behalen.</p>
+                <p>Op deze website kun je mijn TikTok-video's bekijken én de bijbehorende bestanden downloaden, zodat je de ideeën direct kunt inzetten in jouw eigen klas.</p>
+                <p>Heb je vragen, opmerkingen of ideeën? Stuur me dan vooral een berichtje via de <a href="{% url 'contact' %}">contactpagina</a>.</p>
+                <p>Groetjes,<br>Bart Roozen</p>
+            </div>
         </div>
         <div class="column">
             <img class="highlighted-img" src="{% static 'main/images/Introducing.jpeg' %}" alt="Meester Bart">

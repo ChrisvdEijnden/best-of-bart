@@ -94,7 +94,7 @@
                 link.href = file.url;
                 link.target = "_blank";
                 link.rel = "noopener";
-                var name = file.url.split("/").pop();
+                var name = file.name || file.url.split("/").pop();
                 try { name = decodeURIComponent(name); } catch (e) {}
                 link.textContent = name;
                 filesEl.appendChild(link);

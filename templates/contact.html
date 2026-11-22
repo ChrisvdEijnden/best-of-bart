@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Contact{% endblock %}
+{% block title %}Contact · Best of Bart{% endblock %}
 
 {% block content %}
 <div class="contact-container">
-    <h1 class="main-header">Contact</h1>
+    <h1 class="page-title">Contact</h1>
     
     <div class="contact-content">
         <div class="contact-info">
@@ -18,25 +18,14 @@
             
             <div class="contact-item">
                 <p class="contact-label">Instagram</p>
-                <a href="https://www.instagram.com/bartrooz/" target="_blank" class="contact-link">www.instagram.com/bartrooz</a>
+                <a href="https://www.instagram.com/bartrooz/" target="_blank" rel="noopener" class="contact-link">@bartrooz</a>
             </div>
 
             <div class="contact-item">
                 <p class="contact-label">TikTok</p>
-                <a href="https://www.tiktok.com/@bestofbart" target="_blank" class="contact-link">www.tiktok.com/@bestofbart</a>
+                <a href="https://www.tiktok.com/@bestofbart" target="_blank" rel="noopener" class="contact-link">@bestofbart</a>
             </div>
         </div>
     </div>
-
-    <div class="highlighted-item">
-        <div class="column">
-            <h1 class="highlighted-title">Welkom op mijn website!</h1>
-            <p class="highlighted-description">Ik ben Meester Bart: een enthousiaste en creatieve leerkracht van groep 8 met een grote passie voor het onderwijs. Ik tover graag 'saaie' lessen om tot betekenisvolle en leuke lessen. Dat doe ik door lesideeën en werkvormen te bedenken waardoor kinderen spelenderwijs, creatief en met plezier hun lesdoelen behalen.<br><br>Op deze website kun je mijn TikTok-video's bekijken én de bijbehorende bestanden downloaden, zodat je de ideeën direct kunt inzetten in jouw eigen klas.<br><br>Heb je vragen, opmerkingen of ideeën? Stuur me dan vooral een berichtje via één van mijn socials.<br><br>Groetjes,<br>Bart Roozen</p>
-        </div>
-        <div class="column">
-            <img class="highlighted-img" src="{% static 'main/images/Introducing.jpeg' %}" alt="Meester Bart">
-        </div>
-    </div>
-
 </div>
 {% endblock %}

@@ -33,3 +33,6 @@ git push origin main --force
 secret_key.txt
 django_secret_key.txt
 .secret_key.*.tmp
+
+# Generated image thumbnails (rebuilt on demand, never committed)
+media/main/thumbs/

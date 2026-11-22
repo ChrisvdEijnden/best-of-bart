@@ -5,7 +5,7 @@
         data-files="{{ item.files_json }}"
         {% if active_genre and active_genre != 'all' and item.genre != active_genre %}hidden{% endif %}>
     <span class="gallery-media">
-        <img src="{{ item.image.url }}" alt="">
+        <img src="{{ item.thumbnail_url }}" alt="" width="720" height="1008"{% if forloop.counter > 5 %} loading="lazy"{% endif %} decoding="async">
         <span class="genre-tag genre-{{ item.genre }}">{{ item.get_genre_display }}</span>
     </span>
     <span class="item-title">{{ item.title }}</span>

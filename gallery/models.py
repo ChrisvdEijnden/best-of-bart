@@ -1,11 +1,12 @@
 import json
 from pathlib import Path
+from urllib.parse import urlparse
 
 from django.core.exceptions import ValidationError
 from django.db import models
 
 from .git_sync import push_files
-from .images import crop_to_ratio
+from .images import crop_to_ratio, thumbnail_url
 
 
 class GalleryItem(models.Model):
@@ -44,8 +45,12 @@ class GalleryItem(models.Model):
             push_files([self.image.path], f"Afbeelding toegevoegd: {self.title}")
 
     @property
+    def thumbnail_url(self):
+        return thumbnail_url(self.image) or self.image.url
+
+    @property
     def files_json(self):
-        return json.dumps([{"url": f.url} for f in self.files.all()])
+        return json.dumps([{"url": f.url, "name": f.display_name} for f in self.files.all()])
 
 
 class GalleryFile(models.Model):
@@ -68,6 +73,14 @@ class GalleryFile(models.Model):
     @property
     def url(self):
         return self.file.url if self.file else self.external_url
+
+    @property
+    def display_name(self):
+        """File name for uploads; the site's domain for links (e.g. youtube.com)."""
+        if self.file:
+            return Path(self.file.name).name
+        host = urlparse(self.external_url).netloc
+        return host.removeprefix("www.") or self.external_url
 
     def __str__(self):
         return self.url

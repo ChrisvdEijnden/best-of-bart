@@ -1,4 +1,7 @@
+import os
+import tempfile
 from io import BytesIO
+from pathlib import Path
 
 from django.core.files.base import ContentFile
 from PIL import Image, ImageOps
@@ -37,3 +40,45 @@ def crop_to_ratio(file, ratio=COVER_RATIO):
     buffer = BytesIO()
     img.save(buffer, format=fmt, **({"quality": 90} if fmt == "JPEG" else {}))
     return ContentFile(buffer.getvalue())
+
+
+THUMB_WIDTH = 720  # 2x the largest display size (350px popup), ~3x a phone card
+
+
+def thumbnail_url(image_field, width=THUMB_WIDTH):
+    """URL of a downscaled JPEG copy of an uploaded image, made on first use.
+
+    Thumbnails are a disposable cache under media/main/thumbs/ (git-ignored,
+    never pushed): delete the folder and they are rebuilt. A thumbnail is
+    rebuilt when its source file is newer. Returns None if it can't be made,
+    so callers can fall back to the original.
+    """
+    if not image_field:
+        return None
+    storage = image_field.storage
+    source = Path(image_field.path)
+    name = f"main/thumbs/{source.stem}-{source.suffix.lstrip('.').lower()}-{width}.jpg"
+    target = Path(storage.path(name))
+    try:
+        if target.exists() and target.stat().st_mtime >= source.stat().st_mtime:
+            return storage.url(name)
+        with Image.open(source) as img:
+            img = ImageOps.exif_transpose(img)
+            img.thumbnail((width, width * 4), Image.LANCZOS)
+            if img.mode in ("RGBA", "LA", "P"):
+                img = img.convert("RGBA")
+                background = Image.new("RGB", img.size, "white")
+                background.paste(img, mask=img.getchannel("A"))
+                img = background
+            elif img.mode != "RGB":
+                img = img.convert("RGB")
+            target.parent.mkdir(parents=True, exist_ok=True)
+            # Write to a temp file and rename, so a parallel request never
+            # serves a half-written thumbnail.
+            fd, tmp = tempfile.mkstemp(dir=target.parent, suffix=".tmp")
+            with os.fdopen(fd, "wb") as out:
+                img.save(out, "JPEG", quality=80, optimize=True, progressive=True)
+            os.replace(tmp, target)
+        return storage.url(name)
+    except (OSError, ValueError):
+        return None

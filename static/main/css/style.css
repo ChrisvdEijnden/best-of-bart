@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Ms+Madi&family=Fredoka:wght@300..700&display=swapfamily=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
-
 /* Reset */
 * {
     margin: 0;
@@ -22,30 +20,51 @@ main {
 }
 
 /* Typography */
+/* The handwritten face is reserved for the home page hero, where it's a
+   signature. It scales fluidly instead of jumping between breakpoints. */
 .main-header {
     font-family: 'Ms Madi', cursive;
-    font-size: 2.5rem;
+    font-weight: 400;
+    font-size: clamp(3.5rem, 11vw, 7rem);
+    line-height: 1.1;
     text-align: center;
     color: black;
     margin: 0;
+    padding: 12px 16px 0;
+}
+
+/* Titles of the other pages: legible, tight tracking at display size. */
+.page-title {
+    font-family: "Fredoka", sans-serif;
+    font-weight: 600;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: black;
+    margin: 0;
+    padding: 32px 16px 0;
 }
 
 .item-title {
-    font-family: "Fredoka", serif;
+    font-family: "Fredoka", sans-serif;
     font-weight: 500;
     font-size: 1.2rem;
     text-align: left;
     color: black;
-    z-index: 900;
 }
 
 /* Navigation */
-nav {
+/* Translucent bar: content scrolls under it, and a soft edge replaces the
+   hard 1px dark line. */
+header nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 15px;
+    gap: 12px;
+    height: 60px;
+    padding: 0 16px;
     color: black;
     font-family: "Open Sans", sans-serif;
     font-size: 1rem;
@@ -53,34 +72,52 @@ nav {
     top: 0;
     left: 0;
     right: 0;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.82);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
     z-index: 1000;
-    border-bottom: 1px solid #333;
+}
+
+.nav-links {
+    display: flex;
+    gap: 4px;
 }
 
 /* Buttons - Shared Styles */
-.contact-btn,
+.nav-link,
 .home-btn,
 .tab-btn {
     color: black;
-    background-color: white;
+    background-color: transparent;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: normal;
 }
 
-.contact-btn,
+.nav-link,
 .home-btn {
     display: inline-block;
     border-radius: 50px;
     border: 1px solid transparent;
-    padding: 7px 12px;
+    padding: 7px 14px;
     text-decoration: none;
     width: fit-content;
 }
 
-.contact-btn {
-    border: 1px solid black;
+/* The brand is the strongest thing in the bar. */
+.home-btn {
+    font-family: "Fredoka", sans-serif;
+    font-weight: 600;
+    font-size: 1.15rem;
+    letter-spacing: -0.01em;
+    padding-left: 4px;
+}
+
+/* Where am I: the current page's link is filled. */
+.nav-link[aria-current="page"] {
+    background-color: #000;
+    color: #fff;
 }
 
 .tab-btn {
@@ -98,7 +135,7 @@ nav {
 
 /* Every control reacts the instant it's pressed, not on release. Only
    transform and colours animate (never `all`). */
-.contact-btn,
+.nav-link,
 .home-btn,
 .tab-btn,
 .close-popup-btn,
@@ -112,7 +149,7 @@ nav {
     -webkit-tap-highlight-color: transparent;
 }
 
-.contact-btn:active,
+.nav-link:active,
 .home-btn:active,
 .tab-btn:active,
 .close-popup-btn:active,
@@ -134,7 +171,7 @@ button:focus-visible {
 /* Hover only where a real pointer can hover; on touch screens hover
    styles stick after a tap. */
 @media (hover: hover) {
-    .contact-btn:hover,
+    .nav-link:hover,
     .home-btn:hover,
     .tab-btn:hover,
     .close-popup-btn:hover,
@@ -142,6 +179,10 @@ button:focus-visible {
     .see-all-btn:hover,
     .file-link:hover {
         background-color: #f0f0f0;
+    }
+
+    .nav-link[aria-current="page"]:hover {
+        background-color: #333;
     }
 
     .filter-btn.active:hover {
@@ -152,7 +193,8 @@ button:focus-visible {
 
 /* Layout */
 .home-container,
-.contact-container {
+.contact-container,
+.admin-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -161,16 +203,18 @@ button:focus-visible {
     margin-top: 60px;
 }
 
+/* Grid, not wrapping flex: the grid is centred as a whole, so a short last
+   row lines up on the left instead of floating in the middle. auto-fit
+   collapses empty tracks, so a 4-card row still sits centred. */
 .gallery {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 200px);
+    justify-content: center;
+    align-items: start;
     width: 100%;
     background-color: white;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: center;
-    height: fit-content;
     padding: 20px;
-    gap: 20px;
+    gap: 28px 20px;
 }
 
 /* Gallery Items */
@@ -179,7 +223,8 @@ button:focus-visible {
 .gallery-item {
     display: flex;
     flex-direction: column;
-    width: 200px;
+    width: 100%;
+    min-width: 0;
     padding: 0;
     border: 0;
     background: none;
@@ -473,7 +518,8 @@ html.dialog-open {
 }
 
 .highlighted-title {
-    font-family: "Fredoka", serif;
+    font-family: "Fredoka", sans-serif;
+    letter-spacing: -0.01em;
     font-size: 1.7rem;
     color: white;
     font-weight: 500;
@@ -487,49 +533,59 @@ html.dialog-open {
     color: whitesmoke;
     line-height: 1.6;
     margin: 0;
+    max-width: 60ch;
 }
 
+.highlighted-description p + p {
+    margin-top: 1em;
+}
+
+.highlighted-description a {
+    color: white;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* The portrait is a cut-out on white; framing it as a rounded card makes
+   the white read as deliberate instead of a box pasted on the dark band. */
 .highlighted-img {
     width: 100%;
     height: auto;
     object-fit: cover;
     display: block;
+    border-radius: 18px;
 }
 
 /* Footer */
 .footer {
     background-color: #333;
     color: white;
-    padding: 10px;
+    padding: 10px 16px;
     font-family: "Open Sans", sans-serif;
     font-size: 0.8rem;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    text-align: left;
+    column-gap: 16px;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .footer a,
 .footer p {
     color: white;
-    padding: 15px;
+    padding: 12px;
     text-decoration: none;
 }
 
 .footer a:hover {
     text-decoration: underline;
-}
-
-/* Filter Bar */
-.filter-bar {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    padding: 15px 20px 0;
-    background-color: white;
-    width: 100%;
-    flex-wrap: wrap;
 }
 
 .see-all-container {
@@ -612,11 +668,11 @@ html.dialog-open {
 
 /* Contact */
 .contact-subheader {
-    font-family: "Fredoka", serif;
+    font-family: "Fredoka", sans-serif;
     font-size: 1.1rem;
-    color: #333;
+    color: #222;
     margin: 0 0 10px;
-    font-weight: lighter;
+    font-weight: 400;
     text-align: center;
     padding-bottom: 20px;
     border-bottom: 1px solid #ddd;
@@ -668,16 +724,19 @@ html.dialog-open {
 }
 
 /* Genre tag styling */
+/* Text colour per tag keeps every tag above 4.5:1 contrast while the
+   background colours stay as they were. */
 .genre-tag {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 1rem;
-    color: white;
-    padding: 7px 12px;
+    top: 8px;
+    right: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    line-height: 1;
+    color: #111;
+    padding: 6px 10px;
     border-radius: 50px;
     font-family: "Fredoka", sans-serif;
-    text-transform: capitalize;
     z-index: 1;
 }
 
@@ -695,17 +754,17 @@ html.dialog-open {
 
 .genre-musical {
     background-color: #e20e49;
+    color: #fff;
 }
 
 /* ── Media Queries ─────────────────────────────────────────────── */
 
 /* Small screens (≤ 480px) */
 @media (max-width: 480px) {
-    .main-header        { font-size: 3.75rem; }
-
-    .gallery            { padding: 10px; gap: 10px;}
-    .gallery-item       { width: calc(50% - 5px); }
+    .gallery            { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 10px 12px; gap: 20px 10px; }
     .gallery-item .item-title { font-size: 0.95rem; }
+    .genre-tag          { top: 6px; right: 6px; font-size: 0.75rem; padding: 5px 8px; }
+    .footer-copy        { width: 100%; text-align: center; padding-bottom: 0; }
 
     .filter-container   { gap: 6px; margin: 15px 0;}
     .filter-btn, .see-all-btn, .login-btn { font-size: 0.85rem; padding: 5px 10px;}
@@ -713,8 +772,7 @@ html.dialog-open {
 
 /* Medium screens (481px–768px) */
 @media (min-width: 481px) and (max-width: 768px) {
-    .main-header       { font-size: 6rem; }
-    .gallery-item      { width: calc((100% - 40px) / 3); }
+    .gallery           { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .popup-nav         { padding: 7px; }
     .close-popup-btn   { padding: 7px; }
     .close-popup-btn svg { width: 18px; height: 18px; }
@@ -734,9 +792,7 @@ html.dialog-open {
 
 /* Desktop (≥ 769px) */
 @media (min-width: 769px) {
-    .main-header       { font-size: 9rem; }
     .item-title        { font-size: 1.2rem; }
-    .gallery-item      { width: 200px; }
     .gallery-item .item-title { font-size: 1.05rem; }
     .popup-nav         { padding: 10px; }
     .close-popup-btn   { padding: 10px; }
@@ -873,7 +929,7 @@ html.dialog-open {
     .gallery-item,
     .gallery-item:hover,
     .gallery-item:active,
-    .contact-btn:active,
+    .nav-link:active,
     .home-btn:active,
     .tab-btn:active,
     .close-popup-btn:active,
@@ -890,5 +946,24 @@ html.dialog-open {
     .gallery-item:active,
     .popup-media:active {
         opacity: 0.8;
+    }
+}
+
+/* Translucent header: solid when the visitor asks for less transparency
+   or more contrast. */
+@media (prefers-reduced-transparency: reduce) {
+    header nav {
+        background-color: #fff;
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+    }
+}
+
+@media (prefers-contrast: more) {
+    header nav {
+        background-color: #fff;
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        box-shadow: 0 1px 0 #000;
     }
 }

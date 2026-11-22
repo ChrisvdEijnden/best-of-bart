@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,7 +39,11 @@
     <!-- End Google Tag Manager -->
     <title>{% block title %}Best of Bart{% endblock %}</title>
 
-    <link rel="stylesheet" href="{% static 'main/css/style.css' %}?v=3">
+    <!-- Fonts load in parallel with the stylesheet (not via a blocking @import inside it). -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Ms+Madi&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap">
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}?v=4">
     <link rel="icon" type="image/x-icon" href="{% static 'main/images/favicon.ico' %}">
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6847708276252567"
@@ -52,26 +56,29 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5Q4KSNXW"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+    {% with page=request.resolver_match.url_name %}
     <header>
-        <nav>
-            <div class="left-navbar">
-                <a href="{% url 'home' %}" class="home-btn">Best of Bart</a>
-            </div>
-            <div class="right-navbar">
-                <a href="{% url 'contact' %}" class="contact-btn">Contact</a>
+        <nav aria-label="Hoofdmenu">
+            <a href="{% url 'home' %}" class="home-btn"{% if page == 'home' %} aria-current="page"{% endif %}>Best of Bart</a>
+            <div class="nav-links">
+                <a href="{% url 'lessen' %}" class="nav-link"{% if page == 'lessen' %} aria-current="page"{% endif %}>Lessen</a>
+                <a href="{% url 'contact' %}" class="nav-link"{% if page == 'contact' %} aria-current="page"{% endif %}>Contact</a>
             </div>
         </nav>
     </header>
+    {% endwith %}
 
     <main>
         {% block content %}{% endblock %}
     </main>
 
     <footer class="footer">
-        <p>&copy; 2026 C.H.M van den Eijnden. All Rights Reserved.</p>
-        <a href="{% url 'contact' %}">Contact</a>
-        <a href="https://bestofbart.nl/beheer">Beheer</a>
-        <a href="#" data-cookie-settings>Cookie-instellingen</a>
+        <p class="footer-copy">&copy; 2026 C.H.M van den Eijnden. Alle rechten voorbehouden.</p>
+        <div class="footer-links">
+            <a href="{% url 'contact' %}">Contact</a>
+            <a href="{% url 'admin:index' %}">Beheer</a>
+            <a href="#" data-cookie-settings>Cookie-instellingen</a>
+        </div>
     </footer>
 
     <div id="cookie-banner" class="cookie-banner" role="region" aria-label="Cookietoestemming" hidden>
@@ -88,6 +95,6 @@
 
     <script src="{% static 'main/js/cookie-consent.js' %}?v=2"></script>
     {% block extra_js %}{% endblock %}
-    <script src="{% static 'main/js/script.js' %}?v=2"></script>
+    <script src="{% static 'main/js/script.js' %}?v=3"></script>
 </body>
-</html>
+</html>
