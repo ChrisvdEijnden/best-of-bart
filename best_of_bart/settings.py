@@ -68,6 +68,11 @@ CSRF_TRUSTED_ORIGINS = [
     "https://www.bestofbart.nl",
 ]
 
+# Only send the login and CSRF cookies over HTTPS, so a plain http:// link
+# can't leak the admin session. Browsers still accept them on http://localhost.
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
 # Public address, used for absolute links in share previews and canonical
 # URLs (request.build_absolute_uri can't tell it's behind HTTPS).
 SITE_URL = os.environ.get("SITE_URL", "https://bestofbart.nl")

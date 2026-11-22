@@ -66,19 +66,15 @@ def _push(paths, message):
             _git("-c", f"user.name={name}", "-c", f"user.email={email}",
                  "commit", "--only", "-m", message, "--", *paths)
 
+            # Never fetch or rebase here: the live site runs from this checkout,
+            # so that would put new code live without migrate or a restart.
+            # The commit stays here and goes along with the next push after a
+            # normal deploy (git pull).
             if _git("push", remote, f"HEAD:{branch}", check=False).returncode != 0:
-                # GitHub has newer commits: replay ours on top, unless that
-                # would overwrite files that were changed here on the server.
-                _git("fetch", remote, branch)
-                incoming = set(_git("diff", "--name-only", "HEAD...FETCH_HEAD").stdout.split())
-                dirty = {line[3:] for line in _git("status", "--porcelain").stdout.splitlines()}
-                if incoming & dirty:
-                    raise GitSyncError(
-                        "GitHub heeft nieuwere versies van " + ", ".join(sorted(incoming & dirty))
-                        + "; commit staat klaar op de server, push handmatig."
-                    )
-                _git("rebase", "--autostash", "FETCH_HEAD")
-                _git("push", remote, f"HEAD:{branch}")
+                raise GitSyncError(
+                    "GitHub heeft nieuwere commits; commit staat klaar op de server "
+                    "en wordt gepusht na de volgende deploy."
+                )
 
             _write_log(f"Gepusht: {message}")
         except Exception as e:
