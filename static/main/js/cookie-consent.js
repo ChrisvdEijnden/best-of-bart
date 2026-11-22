@@ -58,7 +58,8 @@
     });
 
     document.querySelectorAll("[data-cookie-settings]").forEach(function (link) {
-        link.addEventListener("click", function () {
+        link.addEventListener("click", function (event) {
+            event.preventDefault();
             showBanner();
             banner.querySelector("[data-cookie-choice]").focus();
         });

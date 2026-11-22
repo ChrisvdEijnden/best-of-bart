@@ -659,23 +659,9 @@ nav {
     background-color: #051574;
 }
 
-.cookie-btn:focus-visible,
-.footer-link-btn:focus-visible {
+.cookie-btn:focus-visible {
     outline: 3px solid #051574;
     outline-offset: 2px;
-}
-
-.footer-link-btn {
-    background: none;
-    border: none;
-    color: white;
-    padding: 15px;
-    font: inherit;
-    cursor: pointer;
-}
-
-.footer-link-btn:hover {
-    text-decoration: underline;
 }
 
 @media (max-width: 600px) {
