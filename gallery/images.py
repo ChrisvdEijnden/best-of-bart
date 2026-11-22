@@ -61,6 +61,7 @@ def thumbnail_url(image_field, width=THUMB_WIDTH):
     target = Path(storage.path(name))
     try:
         if target.exists() and target.stat().st_mtime >= source.stat().st_mtime:
+            _make_public(target)
             return storage.url(name)
         with Image.open(source) as img:
             img = ImageOps.exif_transpose(img)
@@ -78,7 +79,22 @@ def thumbnail_url(image_field, width=THUMB_WIDTH):
             fd, tmp = tempfile.mkstemp(dir=target.parent, suffix=".tmp")
             with os.fdopen(fd, "wb") as out:
                 img.save(out, "JPEG", quality=80, optimize=True, progressive=True)
+            _make_public(Path(tmp))
             os.replace(tmp, target)
         return storage.url(name)
     except (OSError, ValueError):
         return None
+
+
+def _make_public(path):
+    """Let the web server read the file (and its folder).
+
+    mkstemp creates files readable by their owner only (0600). The web server
+    serves /media/ straight from disk as a different user, so without this
+    every thumbnail comes back as 403 Forbidden.
+    """
+    if path.stat().st_mode & 0o777 != 0o644:
+        os.chmod(path, 0o644)
+    folder = path.parent
+    if folder.stat().st_mode & 0o755 != 0o755:
+        os.chmod(folder, folder.stat().st_mode | 0o755)
