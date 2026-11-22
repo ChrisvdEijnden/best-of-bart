@@ -5,11 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google Tag Manager -->
-    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-5Q4KSNXW"></script>
+    <!-- Google Consent Mode: everything denied until the visitor chooses
+         in the cookie banner. Must run before Tag Manager and AdSense. -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        wait_for_update: 500
+      });
+      (function () {
+        var choice = null;
+        try { choice = localStorage.getItem('cookie-consent'); } catch (e) {}
+        if (choice === 'granted') {
+          gtag('consent', 'update', {
+            ad_storage: 'granted',
+            ad_user_data: 'granted',
+            ad_personalization: 'granted',
+            analytics_storage: 'granted'
+          });
+        }
+      })();
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-5Q4KSNXW"></script>
+    <script>
       gtag('js', new Date());
     </script>
     <!-- End Google Tag Manager -->
@@ -47,8 +71,22 @@
         <p>&copy; 2026 C.H.M van den Eijnden. All Rights Reserved.</p>
         <a href="{% url 'contact' %}">Contact</a>
         <a href="https://bestofbart.nl/beheer">Beheer</a>
+        <button type="button" class="footer-link-btn" data-cookie-settings>Cookie-instellingen</button>
     </footer>
 
+    <div id="cookie-banner" class="cookie-banner" role="region" aria-label="Cookietoestemming" hidden>
+        <p class="cookie-banner-text">
+            Ik gebruik cookies voor statistieken (Google Analytics) en advertenties
+            (Google AdSense). Die worden alleen geplaatst als je ze accepteert. Je kunt
+            je keuze altijd wijzigen via "Cookie-instellingen" onderaan de pagina.
+        </p>
+        <div class="cookie-banner-actions">
+            <button type="button" class="cookie-btn cookie-btn-reject" data-cookie-choice="denied">Weigeren</button>
+            <button type="button" class="cookie-btn cookie-btn-accept" data-cookie-choice="granted">Accepteren</button>
+        </div>
+    </div>
+
+    <script src="{% static 'main/js/cookie-consent.js' %}"></script>
     {% block extra_js %}{% endblock %}
     <script src="{% static 'main/js/script.js' %}"></script>
 </body>
