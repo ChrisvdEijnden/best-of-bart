@@ -67,11 +67,11 @@ nav {
     cursor: pointer;
     font-size: 0.9rem;
     font-weight: normal;
-    transition: background-color 0.2s;
 }
 
 .contact-btn,
 .home-btn {
+    display: inline-block;
     border-radius: 50px;
     border: 1px solid transparent;
     padding: 7px 12px;
@@ -92,12 +92,62 @@ nav {
     white-space: nowrap;
 }
 
-/* Button Hover States */
-.contact-btn:hover,
-.home-btn:hover,
-.tab-btn:hover,
-.tab-btn:active {
+.tab-btn.active {
     background-color: #f0f0f0;
+}
+
+/* Every control reacts the instant it's pressed, not on release. Only
+   transform and colours animate (never `all`). */
+.contact-btn,
+.home-btn,
+.tab-btn,
+.close-popup-btn,
+.filter-btn,
+.see-all-btn,
+.login-btn,
+.cookie-btn,
+.tiktok-btn,
+.file-link {
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.1s ease-out;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.contact-btn:active,
+.home-btn:active,
+.tab-btn:active,
+.close-popup-btn:active,
+.filter-btn:active,
+.see-all-btn:active,
+.login-btn:active,
+.cookie-btn:active,
+.tiktok-btn:active,
+.file-link:active {
+    transform: scale(0.96);
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid #051574;
+    outline-offset: 2px;
+}
+
+/* Hover only where a real pointer can hover; on touch screens hover
+   styles stick after a tap. */
+@media (hover: hover) {
+    .contact-btn:hover,
+    .home-btn:hover,
+    .tab-btn:hover,
+    .close-popup-btn:hover,
+    .filter-btn:hover,
+    .see-all-btn:hover,
+    .file-link:hover {
+        background-color: #f0f0f0;
+    }
+
+    .filter-btn.active:hover {
+        background-color: #000;
+        border-color: #000;
+    }
 }
 
 /* Layout */
@@ -116,7 +166,7 @@ nav {
     width: 100%;
     background-color: white;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     height: fit-content;
     padding: 20px;
@@ -124,73 +174,132 @@ nav {
 }
 
 /* Gallery Items */
+/* A card is a real button: reachable by keyboard, title always visible
+   (not only on hover, which touch and keyboard users never get). */
 .gallery-item {
-    border: 2px solid #333;
-    width: 110px;
-    height: 154px;
-    background-color: white;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: left;
     cursor: pointer;
     user-select: none;
+    transition: transform 0.2s ease-out;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.gallery-item[hidden] {
+    display: none;
+}
+
+.gallery-item:active {
+    transform: scale(0.97);
+    transition-duration: 0.1s;
+}
+
+@media (hover: hover) {
+    .gallery-item:hover {
+        transform: scale(1.03);
+    }
+
+    .gallery-item:hover:active {
+        transform: scale(0.97);
+    }
+}
+
+.gallery-item:focus-visible {
+    outline-offset: 4px;
+}
+
+.gallery-media {
     position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 5 / 7;
+    border: 2px solid #333;
     overflow: hidden;
-    transition: transform 0.3s ease-in-out;
+    background-color: #f0f0f0;
 }
 
-.gallery-item:hover {
-    transform: scale(1.03);
-}
-
-.gallery-item .item-title {
-    position: absolute;
-    bottom: -50px;
-    left: 0;
-    right: 0;
-    padding: 10px;
-    opacity: 0;
-    background-color: white;
-    transition: opacity 0.3s ease-in-out, bottom 0.3s ease-in-out;
-}
-
-.gallery-item:hover .item-title {
-    opacity: 1;
-    bottom: 0;
-}
-
-.gallery-item img {
+.gallery-media img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    -webkit-transform: translateZ(0);
 }
 
-/* Popup */
+.gallery-item .item-title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    padding: 8px 2px 0;
+    font-size: 1rem;
+    line-height: 1.25;
+    min-height: calc(2 * 1.25em + 8px);
+}
+
+/* Lesson dialog. The <dialog> itself is the full-screen dimming layer; the
+   .popup panel inside it is the card that grows out of the tapped lesson. */
+html.dialog-open {
+    overflow: hidden;
+}
+
+.lesson-dialog {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 20px;
+    border: 0;
+    background-color: transparent;
+    overflow: hidden;
+}
+
+.lesson-dialog[open] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.lesson-dialog::backdrop {
+    background: transparent;
+}
+
 .popup {
-    height: fit-content;
-    width: 200px;
+    position: relative;
+    flex-shrink: 0;
+    width: min(350px, 100%);
+    max-height: 100%;
     border: 2px solid #333;
     border-radius: 18px;
     background-color: white;
-    position: fixed;
-    margin-top: 60px;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     padding: 0 20px 20px;
-    visibility: hidden;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    scrollbar-width: none;
-    z-index: 999;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    transform-origin: 0 0;
+    will-change: transform, opacity;
 }
 
-.popup::-webkit-scrollbar {
+.popup-tab {
+    display: flex;
+    flex-direction: column;
+}
+
+.popup-tab[hidden] {
     display: none;
-}
-
-.open-popup {
-    visibility: visible;
 }
 
 .popup-nav {
@@ -224,14 +333,8 @@ nav {
     align-items: center;
     justify-content: center;
     color: black;
-    transition: background-color 0.2s;
     flex-shrink: 0;
     margin-left: auto;
-}
-
-.close-popup-btn:hover,
-.filter-btn:hover {
-    background-color: #f0f0f0;
 }
 
 .close-popup-btn svg {
@@ -243,7 +346,6 @@ nav {
     padding: 20px 10px 0;
 }
 
-.popup img,
 #popupImage {
     width: 100%;
     aspect-ratio: 5/7;
@@ -251,16 +353,105 @@ nav {
     display: block;
 }
 
+/* The photo is the way into the video, so it says so: a play badge, not
+   just a pointer cursor that touch screens never show. */
+.popup-media {
+    position: relative;
+    display: block;
+    color: white;
+}
+
+.play-badge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 64px;
+    height: 64px;
+    margin: -32px 0 0 -32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.55);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    transition: transform 0.2s ease-out;
+}
+
+.play-badge svg {
+    margin-left: 3px; /* optical centring of the triangle */
+}
+
+.popup-media:not([href]) .play-badge {
+    display: none;
+}
+
+.popup-media:active .play-badge {
+    transform: scale(0.92);
+}
+
+@media (hover: hover) {
+    .popup-media[href]:hover .play-badge {
+        transform: scale(1.08);
+    }
+}
+
+.tiktok-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 10px 16px;
+    border-radius: 25px;
+    border: 2px solid #000;
+    background-color: #000;
+    color: #fff;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.tiktok-btn[hidden] {
+    display: none;
+}
+
+@media (hover: hover) {
+    .tiktok-btn:hover {
+        background-color: #051574;
+        border-color: #051574;
+    }
+}
+
 #popupDescription {
     font-family: "Open Sans", sans-serif;
     font-size: 0.95rem;
-    padding: 10px;
+    line-height: 1.5;
+    padding: 16px 10px 0;
+    white-space: pre-line; /* keep the line breaks typed in the admin */
 }
 
 #popupFiles {
     font-family: "Open Sans", sans-serif;
     font-size: 0.9rem;
-    padding: 10px;
+    padding: 16px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#popupFiles p {
+    padding: 0 10px;
+}
+
+.file-link {
+    display: block;
+    padding: 10px 14px;
+    border: 2px solid #333;
+    border-radius: 12px;
+    color: #000;
+    text-decoration: none;
+    overflow-wrap: anywhere;
 }
 
 /* Highlighted Item */
@@ -356,6 +547,7 @@ nav {
 
 .filter-btn,
 .see-all-btn {
+    display: inline-block;
     color: #000;
     text-decoration: none;
     font-family: "Open Sans", sans-serif;
@@ -365,7 +557,12 @@ nav {
     background-color: white;
     border-radius: 25px;
     cursor: pointer;
-    transition: all 0.3s ease;
+}
+
+.filter-count {
+    margin-left: 2px;
+    opacity: 0.6;
+    font-variant-numeric: tabular-nums;
 }
 
 .login-btn {
@@ -378,18 +575,13 @@ nav {
     background-color: #000;
     border-radius: 25px;
     cursor: pointer;
-    transition: all 0.3s ease;
 }
 
-.login-btn:hover {
-    border-color: #051574;
-    background-color: #051574;
-}
-
-.filter-btn:hover,
-.see-all-btn:hover {
-    border-color: #333;
-    color: #333;
+@media (hover: hover) {
+    .login-btn:hover {
+        border-color: #051574;
+        background-color: #051574;
+    }
 }
 
 .filter-btn.active,
@@ -512,8 +704,8 @@ nav {
     .main-header        { font-size: 3.75rem; }
 
     .gallery            { padding: 10px; gap: 10px;}
-    .gallery-item       { width: calc(45% - 5px); height: calc((45vw - 5px) * 1.4); }
-    .popup              { width: calc(100% - 40px); max-height: 80vh; top: 50%;}
+    .gallery-item       { width: calc(50% - 5px); }
+    .gallery-item .item-title { font-size: 0.95rem; }
 
     .filter-container   { gap: 6px; margin: 15px 0;}
     .filter-btn, .see-all-btn, .login-btn { font-size: 0.85rem; padding: 5px 10px;}
@@ -522,8 +714,7 @@ nav {
 /* Medium screens (481px–768px) */
 @media (min-width: 481px) and (max-width: 768px) {
     .main-header       { font-size: 6rem; }
-    .gallery-item      { width: calc(45% - 5px); height: calc((45vw - 5px) * 1.4); }
-    .popup             { width: 300px; }
+    .gallery-item      { width: calc((100% - 40px) / 3); }
     .popup-nav         { padding: 7px; }
     .close-popup-btn   { padding: 7px; }
     .close-popup-btn svg { width: 18px; height: 18px; }
@@ -545,8 +736,8 @@ nav {
 @media (min-width: 769px) {
     .main-header       { font-size: 9rem; }
     .item-title        { font-size: 1.2rem; }
-    .gallery-item      { width: 200px; height: 280px; }
-    .popup             { width: 350px; }
+    .gallery-item      { width: 200px; }
+    .gallery-item .item-title { font-size: 1.05rem; }
     .popup-nav         { padding: 10px; }
     .close-popup-btn   { padding: 10px; }
     .close-popup-btn svg { width: 20px; height: 20px; }
@@ -637,7 +828,6 @@ nav {
     border: 2px solid #000;
     border-radius: 25px;
     cursor: pointer;
-    transition: all 0.3s ease;
 }
 
 .cookie-btn-reject {
@@ -645,18 +835,20 @@ nav {
     color: #000;
 }
 
-.cookie-btn-reject:hover {
-    background-color: #f0f0f0;
-}
-
 .cookie-btn-accept {
     background-color: #000;
     color: #fff;
 }
 
-.cookie-btn-accept:hover {
-    border-color: #051574;
-    background-color: #051574;
+@media (hover: hover) {
+    .cookie-btn-reject:hover {
+        background-color: #f0f0f0;
+    }
+
+    .cookie-btn-accept:hover {
+        border-color: #051574;
+        background-color: #051574;
+    }
 }
 
 .cookie-btn:focus-visible {
@@ -672,5 +864,31 @@ nav {
 
     .cookie-banner-actions .cookie-btn {
         flex: 1;
+    }
+}
+
+/* Reduced motion: no scaling. Presses give a gentle fade instead, and the
+   dialog cross-fades (handled in script.js). Colour changes stay. */
+@media (prefers-reduced-motion: reduce) {
+    .gallery-item,
+    .gallery-item:hover,
+    .gallery-item:active,
+    .contact-btn:active,
+    .home-btn:active,
+    .tab-btn:active,
+    .close-popup-btn:active,
+    .filter-btn:active,
+    .see-all-btn:active,
+    .login-btn:active,
+    .cookie-btn:active,
+    .tiktok-btn:active,
+    .file-link:active,
+    .play-badge {
+        transform: none !important;
+    }
+
+    .gallery-item:active,
+    .popup-media:active {
+        opacity: 0.8;
     }
 }

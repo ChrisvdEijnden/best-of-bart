@@ -7,53 +7,26 @@
 <div class="home-container">
     <h1 class="main-header">Alle Lessen</h1>
     
-    <div class="filter-container">
-        <button class="filter-btn active"  data-filter="all">Alle</button>
-        <button class="filter-btn" data-filter="crea">Creatief</button>
-        <button class="filter-btn" data-filter="spelling">Spelling</button>
-        <button class="filter-btn" data-filter="rekenen">Rekenen</button>
-        <button class="filter-btn" data-filter="musical">Musical</button>
+    <div class="filter-container" role="group" aria-label="Filter op vak">
+        <button type="button" class="filter-btn{% if active_genre == 'all' %} active{% endif %}" data-filter="all"
+                aria-pressed="{% if active_genre == 'all' %}true{% else %}false{% endif %}">
+            Alle <span class="filter-count">{{ total_items }}</span>
+        </button>
+        {% for filter in filters %}
+        <button type="button" class="filter-btn{% if active_genre == filter.value %} active{% endif %}" data-filter="{{ filter.value }}"
+                aria-pressed="{% if active_genre == filter.value %}true{% else %}false{% endif %}">
+            {{ filter.label }} <span class="filter-count">{{ filter.count }}</span>
+        </button>
+        {% endfor %}
     </div>
 
     <div class="gallery">
         {% for item in gallery_items %}
-            <div class="gallery-item" data-item-id="{{ item.id }}" data-tiktok-url="{{ item.tiktok_url }}" data-description="{{ item.description }}" data-genre="{{ item.genre }}" data-files='{{ item.files_json|safe }}'>
-                <h2 class="item-title">{{ item.title }}</h2>
-                <img src="{{ item.image.url }}" alt="{{ item.title }}">
-                <span class="genre-tag genre-{{ item.genre }}">{{ item.genre }}</span>
-            </div>
+            {% include "partials/lesson_card.html" %}
         {% endfor %}
     </div>
 
-    <div class="popup" id="popup">
-        <nav class="popup-nav">
-            <div class="popup-nav-tabs">
-                <button class="tab-btn active" data-tab="0" onclick="switchTab(0)">TikTok</button>
-                <button class="tab-btn" data-tab="1" onclick="switchTab(1)">Uitleg</button>
-                <button class="tab-btn" data-tab="2" onclick="switchTab(2)">Bestanden</button>
-            </div>
-            <button class="close-popup-btn" onclick="closePopup()" title="Sluiten">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-                    <path fill="currentColor" d="M10 8.586L2.929 1.515L1.515 2.929L8.586 10l-7.071 7.071l1.414 1.414L10 11.414l7.071 7.071l1.414-1.414L11.414 10l7.071-7.071l-1.414-1.414z" />
-                </svg>
-            </button>
-        </nav>
-
-        <!-- Tab 0: TikTok -->
-        <div class="popup-tab" data-tab="0" style="display: flex; flex-direction: column;">
-            <img id="popupImage">
-            <h2 class="item-title" id="popupTitle"></h2>
-        </div>
-
-        <!-- Tab 1: Uitleg -->
-        <div class="popup-tab" data-tab="1" style="display: flex; flex-direction: column;">
-            <p id="popupDescription"></p>
-        </div>
-
-        <!-- Tab 2: Bestanden -->
-        <div class="popup-tab" data-tab="2" style="display: flex; flex-direction: column;" id="popupFiles">
-        </div>
-    </div>
+    {% include "partials/lesson_dialog.html" %}
 
     <div class="highlighted-item">
         <div class="column">

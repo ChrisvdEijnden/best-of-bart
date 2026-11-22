@@ -1,0 +1,12 @@
+<button type="button" class="gallery-item" aria-haspopup="dialog"
+        data-genre="{{ item.genre }}"
+        data-tiktok-url="{{ item.tiktok_url }}"
+        data-description="{{ item.description }}"
+        data-files="{{ item.files_json }}"
+        {% if active_genre and active_genre != 'all' and item.genre != active_genre %}hidden{% endif %}>
+    <span class="gallery-media">
+        <img src="{{ item.image.url }}" alt="">
+        <span class="genre-tag genre-{{ item.genre }}">{{ item.get_genre_display }}</span>
+    </span>
+    <span class="item-title">{{ item.title }}</span>
+</button>
