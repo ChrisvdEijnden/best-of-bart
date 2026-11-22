@@ -111,7 +111,7 @@ header nav {
     font-weight: 600;
     font-size: 1.15rem;
     letter-spacing: -0.01em;
-    padding-left: 4px;
+    text-align: center;
 }
 
 /* Where am I: the current page's link is filled. */
@@ -724,8 +724,6 @@ html.dialog-open {
 }
 
 /* Genre tag styling */
-/* Text colour per tag keeps every tag above 4.5:1 contrast while the
-   background colours stay as they were. */
 .genre-tag {
     position: absolute;
     top: 8px;
@@ -733,7 +731,7 @@ html.dialog-open {
     font-size: 0.85rem;
     font-weight: 500;
     line-height: 1;
-    color: #111;
+    color: #fff;
     padding: 6px 10px;
     border-radius: 50px;
     font-family: "Fredoka", sans-serif;
@@ -754,7 +752,6 @@ html.dialog-open {
 
 .genre-musical {
     background-color: #e20e49;
-    color: #fff;
 }
 
 /* ── Media Queries ─────────────────────────────────────────────── */
