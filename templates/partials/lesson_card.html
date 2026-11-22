@@ -1,4 +1,4 @@
-<button type="button" class="gallery-item" aria-haspopup="dialog"
+<a class="gallery-item" href="{{ item.get_absolute_url }}" aria-haspopup="dialog"
         data-genre="{{ item.genre }}"
         data-tiktok-url="{{ item.tiktok_url }}"
         data-description="{{ item.description }}"
@@ -9,4 +9,4 @@
         <span class="genre-tag genre-{{ item.genre }}">{{ item.get_genre_display }}</span>
     </span>
     <span class="item-title">{{ item.title }}</span>
-</button>
+</a>

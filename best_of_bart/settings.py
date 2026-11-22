@@ -68,6 +68,10 @@ CSRF_TRUSTED_ORIGINS = [
     "https://www.bestofbart.nl",
 ]
 
+# Public address, used for absolute links in share previews and canonical
+# URLs (request.build_absolute_uri can't tell it's behind HTTPS).
+SITE_URL = os.environ.get("SITE_URL", "https://bestofbart.nl")
+
 # Application definition
 
 INSTALLED_APPS = [

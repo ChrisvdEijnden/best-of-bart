@@ -107,6 +107,7 @@ header nav {
 
 /* The brand is the strongest thing in the bar. */
 .home-btn {
+    white-space: nowrap;
     font-family: "Fredoka", sans-serif;
     font-weight: 600;
     font-size: 1.15rem;
@@ -166,6 +167,12 @@ a:focus-visible,
 button:focus-visible {
     outline: 3px solid #051574;
     outline-offset: 2px;
+}
+
+/* On dark surfaces the navy ring disappears (1.2:1); use white there. */
+.footer a:focus-visible,
+.highlighted-item a:focus-visible {
+    outline-color: #fff;
 }
 
 /* Hover only where a real pointer can hover; on touch screens hover
@@ -231,6 +238,7 @@ button:focus-visible {
     color: inherit;
     font: inherit;
     text-align: left;
+    text-decoration: none;
     cursor: pointer;
     user-select: none;
     transition: transform 0.2s ease-out;
@@ -965,5 +973,191 @@ html.dialog-open {
         -webkit-backdrop-filter: none;
         backdrop-filter: none;
         box-shadow: 0 1px 0 #000;
+    }
+}
+
+/* ── Lesson page (/lessen/<id>-<titel>/) ─────────────────────────── */
+.lesson-page {
+    width: 100%;
+    max-width: 960px;
+    margin: 60px auto 0;
+    padding: 24px 20px 56px;
+    font-family: "Open Sans", sans-serif;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: -10px;
+    padding: 7px 14px 7px 8px;
+    border-radius: 50px;
+    color: #000;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease, transform 0.1s ease-out;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.back-link:active {
+    transform: scale(0.96);
+}
+
+@media (hover: hover) {
+    .back-link:hover {
+        background-color: #f0f0f0;
+    }
+}
+
+.lesson-layout {
+    display: grid;
+    gap: 24px;
+    margin-top: 16px;
+}
+
+.lesson-media {
+    display: block;
+    position: relative;
+    width: 100%;
+    max-width: 360px;
+    border: 2px solid #333;
+    overflow: hidden;
+}
+
+.lesson-media img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 5 / 7;
+    object-fit: cover;
+    display: block;
+}
+
+.lesson-body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 0;
+}
+
+.lesson-genre {
+    position: static;
+    align-self: flex-start;
+}
+
+.lesson-title {
+    font-family: "Fredoka", sans-serif;
+    font-weight: 600;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.lesson-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 60ch;
+    white-space: pre-line;
+}
+
+.lesson-body .tiktok-btn {
+    margin-top: 0;
+}
+
+.lesson-subtitle {
+    font-family: "Fredoka", sans-serif;
+    font-weight: 500;
+    font-size: 1.25rem;
+    margin-top: 8px;
+}
+
+.lesson-files {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.95rem;
+}
+
+/* Phones: cap the photo at half the screen height so the title shows
+   on the first screen. */
+@media (max-width: 768px) {
+    .lesson-media {
+        max-width: min(360px, calc(50vh * 5 / 7));
+    }
+}
+
+@media (min-width: 769px) {
+    .lesson-layout {
+        grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+        gap: 48px;
+        align-items: start;
+    }
+
+    .lesson-body .tiktok-btn {
+        align-self: flex-start;
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+}
+
+/* ── Phone in landscape: photo beside the title and TikTok button, so the
+   main action is visible without scrolling inside a 350px-tall popup. ── */
+@media (orientation: landscape) and (max-height: 500px) {
+    .popup {
+        width: min(640px, 100%);
+    }
+
+    .popup-tab[data-tab="0"]:not([hidden]) {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        grid-template-rows: auto auto 1fr;
+        column-gap: 20px;
+        padding-top: 16px;
+    }
+
+    .popup-tab[data-tab="0"] .popup-media {
+        grid-row: 1 / -1;
+    }
+
+    #popupImage {
+        width: auto;
+        height: calc(100dvh - 150px);
+        max-height: 420px;
+    }
+
+    #popupTitle {
+        padding: 0;
+    }
+
+    .popup-tab[data-tab="0"] .tiktok-btn {
+        align-self: start;
+    }
+}
+
+/* ── Very small phones (≤ 360px) ──────────────────────────────────── */
+@media (max-width: 360px) {
+    header nav {
+        padding: 0 12px;
+    }
+
+    .nav-link {
+        padding: 7px 10px;
+    }
+
+    .home-btn {
+        font-size: 1.05rem;
+    }
+
+    .cookie-banner {
+        left: 8px;
+        right: 8px;
+        bottom: 8px;
+        padding: 12px 14px;
+        gap: 10px;
+        font-size: 0.85rem;
+    }
+
+    .cookie-banner-actions .cookie-btn {
+        min-width: 0;
+        font-size: 0.95rem;
     }
 }

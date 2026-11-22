@@ -4,6 +4,8 @@ from urllib.parse import urlparse
 
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.urls import reverse
+from django.utils.text import slugify
 
 from .git_sync import push_files
 from .images import crop_to_ratio, thumbnail_url
@@ -33,6 +35,16 @@ class GalleryItem(models.Model):
 
     def __str__(self):
         return self.title
+
+    @property
+    def slug(self):
+        # Derived from the title, so renaming a lesson changes its URL; the
+        # old URL still works because the id is what's looked up (and the
+        # view redirects to the current slug).
+        return slugify(self.title) or "les"
+
+    def get_absolute_url(self):
+        return reverse("lesson", args=[self.pk, self.slug])
 
     def save(self, *args, **kwargs):
         new_upload = bool(self.image) and not self.image._committed
