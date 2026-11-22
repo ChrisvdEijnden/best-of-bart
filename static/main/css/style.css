@@ -588,3 +588,103 @@ nav {
     font-family: "Open Sans", sans-serif;
     margin: 0;
 }
+
+/* Cookie consent banner */
+.cookie-banner {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    z-index: 10000;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background-color: white;
+    color: black;
+    border: 2px solid #333;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.cookie-banner[hidden] {
+    display: none;
+}
+
+.cookie-banner-text {
+    margin: 0;
+    flex: 1;
+}
+
+.cookie-banner-actions {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+/* Reject and Accept are deliberately the same size and weight, so neither
+   choice is pushed over the other. */
+.cookie-btn {
+    min-width: 120px;
+    padding: 7px 16px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1rem;
+    border: 2px solid #000;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cookie-btn-reject {
+    background-color: white;
+    color: #000;
+}
+
+.cookie-btn-reject:hover {
+    background-color: #f0f0f0;
+}
+
+.cookie-btn-accept {
+    background-color: #000;
+    color: #fff;
+}
+
+.cookie-btn-accept:hover {
+    border-color: #051574;
+    background-color: #051574;
+}
+
+.cookie-btn:focus-visible,
+.footer-link-btn:focus-visible {
+    outline: 3px solid #051574;
+    outline-offset: 2px;
+}
+
+.footer-link-btn {
+    background: none;
+    border: none;
+    color: white;
+    padding: 15px;
+    font: inherit;
+    cursor: pointer;
+}
+
+.footer-link-btn:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .cookie-banner {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .cookie-banner-actions .cookie-btn {
+        flex: 1;
+    }
+}
