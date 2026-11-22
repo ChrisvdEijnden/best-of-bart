@@ -167,8 +167,11 @@ STORAGES = {
     "staticfiles": {"BACKEND": "whitenoise.storage.CompressedStaticFilesStorage"},
 }
 
-# Serve files straight from static/ and the apps, so a stale or missing
-# collectstatic copy in staticfiles/ can't break the site.
+# When Django itself serves /static/ (e.g. runserver), use static/ and the
+# apps directly, so a stale copy in staticfiles/ can't break it.
+# In production the web server serves /static/ straight from staticfiles/,
+# bypassing Django: that copy must be refreshed after every change in static/:
+#   python manage.py collectstatic --noinput
 WHITENOISE_USE_FINDERS = True
 
 STATICFILES_DIRS = [
