@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}{{ item.title }} · Best of Bart{% endblock %}
+
+{% block meta %}
+    <meta name="description" content="{{ item.description|truncatechars:155 }}">
+    <link rel="canonical" href="{{ page_url }}">
+    <!-- Preview card when the link is shared (WhatsApp, Facebook, etc.) -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Best of Bart">
+    <meta property="og:title" content="{{ item.title }}">
+    <meta property="og:description" content="{{ item.description|truncatechars:200 }}">
+    <meta property="og:image" content="{{ image_url }}">
+    <meta property="og:url" content="{{ page_url }}">
+{% endblock %}
+
+{% block content %}
+<article class="lesson-page">
+    <a href="{% url 'lessen' %}" class="back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M15 5l-7 7 7 7"/></svg>
+        Alle lessen
+    </a>
+
+    <div class="lesson-layout">
+        {% if item.tiktok_url %}
+        <!-- Same destination as the button, so hidden from screen readers and the tab order. -->
+        <a class="lesson-media popup-media" href="{{ item.tiktok_url }}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+            <img src="{{ item.thumbnail_url }}" alt="" width="720" height="1008">
+            <span class="play-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M8 5.14v13.72a1 1 0 0 0 1.5.86l11-6.86a1 1 0 0 0 0-1.72l-11-6.86A1 1 0 0 0 8 5.14z"/></svg>
+            </span>
+        </a>
+        {% else %}
+        <div class="lesson-media">
+            <img src="{{ item.thumbnail_url }}" alt="" width="720" height="1008">
+        </div>
+        {% endif %}
+
+        <div class="lesson-body">
+            <span class="genre-tag genre-{{ item.genre }} lesson-genre">{{ item.get_genre_display }}</span>
+            <h1 class="lesson-title">{{ item.title }}</h1>
+            <p class="lesson-description">{{ item.description }}</p>
+
+            {% if item.tiktok_url %}
+            <a class="tiktok-btn" href="{{ item.tiktok_url }}" target="_blank" rel="noopener">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 5.14v13.72a1 1 0 0 0 1.5.86l11-6.86a1 1 0 0 0 0-1.72l-11-6.86A1 1 0 0 0 8 5.14z"/></svg>
+                Bekijk op TikTok
+            </a>
+            {% endif %}
+
+            <h2 class="lesson-subtitle">Bestanden</h2>
+            <div class="files-list lesson-files">
+                {% for file in item.files.all %}
+                <a class="file-link" href="{{ file.url }}" target="_blank" rel="noopener">{{ file.display_name }}</a>
+                {% empty %}
+                <p>Geen bestanden beschikbaar</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</article>
+{% endblock %}

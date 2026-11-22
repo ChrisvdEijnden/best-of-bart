@@ -1,6 +1,7 @@
 from collections import Counter
 
-from django.shortcuts import render
+from django.conf import settings
+from django.shortcuts import get_object_or_404, redirect, render
 from gallery.models import GalleryItem
 
 
@@ -34,6 +35,19 @@ def items_view(request):
         'filters': filters,
         'active_genre': active_genre,
         'total_items': len(items),
+    })
+
+
+def lesson_view(request, pk, slug=None):
+    """A lesson's own page: what a shared link, a refresh or a search engine
+    gets. On the gallery the same URL opens the lesson in the popup instead."""
+    item = get_object_or_404(visible_items(), pk=pk)
+    if slug != item.slug:
+        return redirect(item, permanent=True)
+    return render(request, 'lesson.html', {
+        'item': item,
+        'image_url': settings.SITE_URL + item.thumbnail_url,
+        'page_url': settings.SITE_URL + item.get_absolute_url(),
     })
 
 

@@ -62,6 +62,13 @@
         var progressAnim = null;
         var heightAnim = null;
         var geometry = null;
+        var pageTitle = document.title;
+
+        // The popup has its own history entry (the lesson's URL), so Back
+        // closes it instead of leaving the page, and Forward reopens it.
+        var ownsHistoryEntry = function () {
+            return !!(history.state && history.state.lessonDialog);
+        };
 
         var fill = function (card) {
             var url = card.getAttribute("data-tiktok-url");
@@ -127,6 +134,7 @@
                 target = source.querySelector("img").getBoundingClientRect();
             }
 
+            if (!target.width || !anchor.width) return null; // e.g. a filtered-out card: just fade
             var scale = target.width / anchor.width;
             return {
                 x: target.left - panelX - scale * anchor.x,
@@ -227,9 +235,14 @@
             });
         };
 
-        var openLesson = function (card) {
+        var openLesson = function (card, opts) {
+            opts = opts || {};
             fill(card);
             source = card;
+            if (opts.pushHistory) {
+                history.pushState({ lessonDialog: true }, "", card.href);
+            }
+            document.title = titleEl.textContent + " · Best of Bart";
             if (!dialog.open) {
                 dialog.showModal();
                 document.documentElement.classList.add("dialog-open");
@@ -250,6 +263,9 @@
             }
             geometry = measure();
             animateProgress(0, function () { dialog.close(); });
+            // Step back off the lesson URL. The popstate this causes calls
+            // closeLesson again, which just keeps the same animation going.
+            if (ownsHistoryEntry()) history.back();
         };
 
         // Runs however the dialog ends up closed (our animation, or the
@@ -266,8 +282,24 @@
             panel.style.height = "";
             dialog.style.backgroundColor = "";
             document.documentElement.classList.remove("dialog-open");
+            document.title = pageTitle;
+            if (ownsHistoryEntry()) history.back();
             if (source) source.focus({ preventScroll: true });
             source = null;
+        });
+
+        window.addEventListener("popstate", function () {
+            if (!ownsHistoryEntry()) {
+                closeLesson();
+                return;
+            }
+            // Forward onto a lesson URL: reopen that lesson.
+            if (dialog.open) return;
+            var path = window.location.pathname;
+            var card = Array.prototype.find.call(document.querySelectorAll(".gallery-item"), function (el) {
+                return el.pathname === path;
+            });
+            if (card) openLesson(card);
         });
 
         // Escape: animate closed instead of vanishing.
@@ -304,8 +336,14 @@
             if (dialog.open && !progressAnim) placePanel();
         });
 
+        // Cards are links to the lesson page. A plain click opens the popup
+        // instead; Cmd/Ctrl/Shift-click or middle-click still opens the page.
         document.querySelectorAll(".gallery-item").forEach(function (card) {
-            card.addEventListener("click", function () { openLesson(card); });
+            card.addEventListener("click", function (event) {
+                if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+                event.preventDefault();
+                openLesson(card, { pushHistory: true });
+            });
         });
     }
 

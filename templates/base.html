@@ -38,12 +38,13 @@
     </script>
     <!-- End Google Tag Manager -->
     <title>{% block title %}Best of Bart{% endblock %}</title>
+    {% block meta %}{% endblock %}
 
     <!-- Fonts load in parallel with the stylesheet (not via a blocking @import inside it). -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Ms+Madi&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap">
-    <link rel="stylesheet" href="{% static 'main/css/style.css' %}?v=6">
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}?v=7">
     <link rel="icon" type="image/x-icon" href="{% static 'main/images/favicon.ico' %}">
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6847708276252567"
@@ -61,7 +62,7 @@
         <nav aria-label="Hoofdmenu">
             <a href="{% url 'home' %}" class="home-btn"{% if page == 'home' %} aria-current="page"{% endif %}>Best of Bart</a>
             <div class="nav-links">
-                <a href="{% url 'lessen' %}" class="nav-link"{% if page == 'lessen' %} aria-current="page"{% endif %}>Lessen</a>
+                <a href="{% url 'lessen' %}" class="nav-link"{% if page == 'lessen' or page == 'lesson' %} aria-current="page"{% endif %}>Lessen</a>
                 <a href="{% url 'contact' %}" class="nav-link"{% if page == 'contact' %} aria-current="page"{% endif %}>Contact</a>
             </div>
         </nav>
@@ -83,9 +84,9 @@
 
     <div id="cookie-banner" class="cookie-banner" role="region" aria-label="Cookietoestemming" hidden>
         <p class="cookie-banner-text">
-            Ik gebruik cookies voor statistieken (Google Analytics) en advertenties
-            (Google AdSense). Die worden alleen geplaatst als je ze accepteert. Je kunt
-            je keuze altijd wijzigen via "Cookie-instellingen" onderaan de pagina.
+            Ik plaats alleen cookies voor statistieken (Google Analytics) en
+            advertenties (Google AdSense) als je dat accepteert. Wijzigen kan altijd
+            via "Cookie-instellingen" onderaan de pagina.
         </p>
         <div class="cookie-banner-actions">
             <button type="button" class="cookie-btn cookie-btn-reject" data-cookie-choice="denied">Weigeren</button>
@@ -95,6 +96,6 @@
 
     <script src="{% static 'main/js/cookie-consent.js' %}?v=2"></script>
     {% block extra_js %}{% endblock %}
-    <script src="{% static 'main/js/script.js' %}?v=3"></script>
+    <script src="{% static 'main/js/script.js' %}?v=4"></script>
 </body>
 </html>
